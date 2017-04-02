@@ -55,9 +55,6 @@ Set stores the translation of the message for the given language. Any old
 value is overwritten.
 */
 func (m MessageType) Set(language, translation string) MessageType {
-	if m == nil {
-		m = make(MessageType, NumLang)
-	}
 	language = strings.ToLower(language)
 	m[language] = translation
 	return m
