@@ -1,0 +1,96 @@
+= include ../includes/top .
+body
+  header
+    a href="http://www.petities.nl"
+      img src="/static/images/logo-petities-nl.png"
+  section.petition-intro-container
+    img src="/static/images/groningen/afbeelding-petitie.png"
+    h1 Laat Groningen niet zakken
+    p.petition-intro-info-counter 161650 ondertekeningen
+    p "Aardbevingen, veroorzaakt door gaswinning, hebben het leefklimaat  in de provincie Groningen voor een groot deel verwoest. Schadeafhandeling stuit op spanning tussen rechtvaardig en rechtmatig. Woningen en gebouwen zijn onveilig. Gedupeerden voelen zich vaak ‘gevangen in een onveilige gevangenis’. - Freek de Jonge"
+  section.petition-container
+    .petition-text-wrapper
+      h2 Petitie
+      h3 Wij
+      p "Nederlanders, en overige gebruikers van Gronings gas, solidair met de gedupeerde Groningers."
+      h3 constateren
+      ul
+        li
+          p "Dat de aardgaswinning in Groningen tot een catastrofe leidt"
+        li
+          p "Dat verwevenheid van belangen van overheid en bedrijfsleven en leveringsafspraken spotten met de veiligheid van de inwoners"
+        li
+          p "Dat zowel vaststelling als afhandeling van de aardbevingsschade door de NAM van de gedupeerde een machteloos, tot eindeloos afwachten gedwongen, slachtoffer maakt"
+        li
+          p "Dat de consequenties van toekomstige bevingen door overheid en bestuurders onderschat worden"
+      h3 en verzoeken
+      ul
+        li
+          p "Afbouwplan versneld stoppen gaswinning"
+        li
+          p "'Generaal pardon' voor alle in behandeling zijnde schades"
+        li
+          p "Daarna omkering bewijslast in een onafhankelijk schadeproces "
+        li
+          p "Uitkoopregeling voor iedereen die het gebied wil verlaten "
+        li
+          p "Scheiding gas en staat"
+        li
+          p "Herstel gemeenschappelijk overleg"
+        li
+          p "Gasbaten investeren"
+        li
+          p "Deltaplan dat Groningen koploper maakt in transitie van economie en energievoorziening"
+        li
+          p "Internationaal kenniscentrum voor milieu in Groningen vestigen."
+    .petition-form-wrapper
+      form
+        h2 Onderteken deze petitie
+        p
+          label Naam
+            input#name type="text" name="name" autocomplete="name" placeholder="Voorletter en achternaam minstens" required=
+        p
+          label E-mailadres
+            input#email type="email" name="email" autocomplete="username" placeholder=gebruikersnaam@iets.iets required=
+        p
+          label Woonplaats
+            input#city type="text" name="city" autocomplete="on" placeholder="Waar u nu woont, op het tijdstip van ondertekenen" required=
+        p
+          input#visible type="checkbox" name="visible"
+            label for="visible" mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.
+  section.petition-details-container
+    .petition-details
+      h2 Details
+      table
+        tr
+          th Ontvanger
+          td Tweede Kamer
+        tr
+          th Petitieloket
+          td Nederland
+        tr
+          th Einddatum
+          td 08-05-2017
+        tr
+          th Antwoord verwacht
+          td 18-05-2017
+        tr
+          th Status
+          td Ondertekenbaar
+        tr
+          th Websites
+          td
+            ul
+             li
+              a href="http://www.laatgroningennietzakken.nl/"
+                | Campagnepagina 'Laat Groningen niet zakken'
+             li
+              a href="https://www.facebook.com/permalink.php?story_fbid=1371451446239730&amp;id=225251577526395"
+                | Bericht op Facebook met de aankondiging van deze petitie
+             li
+              a href="https://twitter.com/petities/status/829063398361092096"
+                | Tweet met aankondiging van deze petitie
+    .petition-details-history
+      h2 Geschiedenis
+      img src="/static/images/groningen/geschiedenis-chart.png"
+  footer
