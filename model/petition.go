@@ -27,6 +27,6 @@ func init() {
 func InitPetition(id string) *Petition {
 	return &Petition{
 		Base:    &entity.Base{ID: id},
-		Caption: make(msg.MessageType, 2),
+		Caption: msg.New(),
 	}
 }
