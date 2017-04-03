@@ -67,15 +67,11 @@ body
           th {{.msg.Get "Websites"}}:
           td
             ul
-             li
-              a href="http://www.laatgroningennietzakken.nl/"
-                | Campagnepagina 'Laat Groningen niet zakken'
-             li
-              a href="https://www.facebook.com/permalink.php?story_fbid=1371451446239730&amp;id=225251577526395"
-                | Bericht op Facebook met de aankondiging van deze petitie
-             li
-              a href="https://twitter.com/petities/status/829063398361092096"
-                | Tweet met aankondiging van deze petitie
+              {{$msg := .msg}}
+              {{range $i, $v := .petition.Websites}}
+                li
+                  a href={{$v.URL}} {{$msg.Select $v.Caption}}
+              {{end}}
     .petition-details-history
       h2 {{.msg.Get "History"}}
       img src="/static/images/{{.petition.ID}}/geschiedenis-chart.png"

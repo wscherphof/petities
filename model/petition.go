@@ -13,6 +13,7 @@ type Petition struct {
 	Closed        time.Time
 	Answered      time.Time
 	Status        string
+	Websites      []*Website
 	NumSignatures msg.MessageType
 	Caption       msg.MessageType
 	Intro         msg.MessageType
@@ -21,8 +22,14 @@ type Petition struct {
 	Requests      []msg.MessageType
 }
 
+type Website struct {
+	URL     string
+	Caption msg.MessageType
+}
+
 func init() {
 	entity.Register(&Petition{})
+
 	groningen := InitPetition("groningen")
 	groningen.Address = msg.New().
 		Set("nl", "Tweede Kamer").
@@ -34,6 +41,23 @@ func init() {
 	groningen.Closed, _ = time.Parse(format, "2017-May-08")
 	groningen.Answered, _ = time.Parse(format, "2017-May-18")
 	groningen.Status = "Signable"
+	groningen.Websites = append(groningen.Websites,
+		&Website{"http://www.laatgroningennietzakken.nl/",
+			msg.New().
+				Set("nl", "Campagnepagina 'Laat Groningen niet zakken'").
+				Set("en", "Campain page 'Don't let Groningen down'"),
+		},
+		&Website{"https://www.facebook.com/permalink.php?story_fbid=1371451446239730&amp;id=225251577526395",
+			msg.New().
+				Set("nl", "Bericht op Facebook met de aankondiging van deze petitie").
+				Set("en", "Facebook message announcing this petition"),
+		},
+		&Website{"https://twitter.com/petities/status/829063398361092096",
+			msg.New().
+				Set("nl", "Tweet met aankondiging van deze petitie").
+				Set("en", "Tweet announcing this petition"),
+		},
+	)
 	groningen.NumSignatures = msg.New().
 		Set("nl", "179.538").
 		Set("en", "179,538")
