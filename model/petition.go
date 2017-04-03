@@ -30,7 +30,7 @@ func init() {
 	groningen.Desk = msg.New().
 		Set("nl", "Nederland").
 		Set("en", "The Netherlands")
-	format := "2006-Jan-02"
+	const format = "2006-Jan-02"
 	groningen.Closed, _ = time.Parse(format, "2017-May-08")
 	groningen.Answered, _ = time.Parse(format, "2017-May-18")
 	groningen.Status = "Signable"
