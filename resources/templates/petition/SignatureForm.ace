@@ -3,13 +3,15 @@ body
   header
     a href="http://www.petities.nl"
       img src="/static/images/logo-petities-nl.png"
-  section.petition-intro-container
-    img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png"
-    h1 {{.msg.Select .petition.Caption}}
-    p.petition-intro-counter {{.msg.Select .petition.NumSignatures}} {{.msg.Get "signatures"}}
-    p {{.msg.Select .petition.Intro}}
-  section.petition-container
-    .petition-text-wrapper
+  section.petition-intro
+    .petition-intro-image
+      img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png" width="100%"
+    .petition-intro-text
+      h1 {{.msg.Select .petition.Caption}}
+      p.petition-intro-counter {{.msg.Select .petition.NumSignatures}} {{.msg.Get "signatures"}}
+      p {{.msg.Select .petition.Intro}}
+  section.petition
+    .petition-text
       h2 {{.msg.Get "Petition"}}
       h3 {{.msg.Get "We"}}
       p {{.msg.Select .petition.We}}
@@ -27,7 +29,7 @@ body
           li
             p {{$msg.Select $v}}
         {{end}}
-    .petition-form-wrapper
+    .petition-form
       form
         h2 {{.msg.Get "Sign this petition"}}
         p
@@ -44,8 +46,8 @@ body
             label for="visible" {{.msg.Get "Visible"}}
         p
           input#submit type="submit" value={{.msg.Get "Submit Signature"}}
-  section.petition-details-container
-    .petition-details
+  section.petition-details
+    .petition-details-text
       h2 {{.msg.Get "Details"}}
       table
         tr
