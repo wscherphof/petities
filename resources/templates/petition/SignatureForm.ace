@@ -3,15 +3,15 @@ body
   header
     a href="http://www.petities.nl"
       img src="/static/images/logo-petities-nl.png"
-  section.petition-intro
-    .petition-intro-image
+  section#petition-intro
+    #petition-intro-image
       img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png" width="100%"
-    .petition-intro-text
+    #petition-intro-text
       h1 {{.msg.Select .petition.Caption}}
-      p.petition-intro-counter {{.msg.Select .petition.NumSignatures}} {{.msg.Get "signatures"}}
+      p#petition-intro-counter {{.msg.Select .petition.NumSignatures}} {{.msg.Get "signatures"}}
       p {{.msg.Select .petition.Intro}}
-  section.petition
-    .petition-text
+  section#petition
+    #petition-text
       h2 {{.msg.Get "Petition"}}
       h3 {{.msg.Get "We"}}
       p {{.msg.Select .petition.We}}
@@ -19,18 +19,16 @@ body
       ul
         {{$msg := .msg}}
         {{range $i, $v := .petition.Observations}}
-          li
-            p {{$msg.Select $v}}
+          li {{$msg.Select $v}}
         {{end}}
       h3 {{.msg.Get "and request"}}
       ul
         {{$msg := .msg}}
         {{range $i, $v := .petition.Requests}}
-          li
-            p {{$msg.Select $v}}
+          li {{$msg.Select $v}}
         {{end}}
-    .petition-form
-      form
+    #petition-form
+      form.sticky
         h2 {{.msg.Get "Sign this petition"}}
         p
           label {{.msg.Get "Name"}}
@@ -45,9 +43,9 @@ body
           input#visible type="checkbox" name="visible"
             label for="visible" {{.msg.Get "Visible"}}
         p
-          input#submit type="submit" value={{.msg.Get "Submit Signature"}}
-  section.petition-details
-    .petition-details-text
+          input#submit type="submit" value={{.msg.Get "Submit signature"}}
+  section#petition-details
+    #petition-details-text
       h2 {{.msg.Get "Details"}}
       table
         tr
@@ -74,7 +72,7 @@ body
                 li
                   a href={{$v.URL}} {{$msg.Select $v.Caption}}
               {{end}}
-    .petition-details-history
+    #petition-details-history
       h2 {{.msg.Get "History"}}
-      img src="/static/images/{{.petition.ID}}/geschiedenis-chart.png"
+      img#petition-details-history-graph src="/static/images/{{.petition.ID}}/geschiedenis-chart.png"
   footer

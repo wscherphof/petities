@@ -54,7 +54,7 @@ func init() {
 		Set("en", "Where you live now, at the time of signing")
 
 	msg.Key("Visible").
-		Set("nl", "mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.").
+		Set("nl", "mijn naam en woonplaats mogen publiekelijk zichtbaar zijn onder de petitie.").
 		Set("en", "Publish my name visibly below the petition.")
 
 	msg.Key("Submit signature").
