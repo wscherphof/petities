@@ -1,0 +1,8 @@
+= include ../includes/top .
+body
+  petition {{.petition}}
+  signature
+    name {{.name}}
+    email {{.email}}
+    city {{.city}}
+    num {{.num}}

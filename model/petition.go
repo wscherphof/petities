@@ -27,8 +27,35 @@ type Website struct {
 	Caption msg.MessageType
 }
 
+func InitPetition(id string) *Petition {
+	return &Petition{Base: &entity.Base{ID: id}}
+}
+
+type Signature struct {
+	*entity.Base
+	Petition string
+	Name     string
+	Email    string
+	City     string
+}
+
+func InitSignature() *Signature {
+	return &Signature{Base: &entity.Base{}}
+}
+
+func (p *Petition) Sign(name, email, city string) (num int, err error, conflict bool) {
+	signature := InitSignature()
+	signature.Petition = p.ID
+	signature.Name = name
+	signature.Email = email
+	signature.City = city
+	err, conflict = signature.Create(signature)
+	return
+}
+
 func init() {
 	entity.Register(&Petition{})
+	entity.Register(&Signature{}).Index("Petition")
 
 	groningen := InitPetition("groningen")
 	groningen.Address = msg.New().
@@ -116,8 +143,4 @@ func init() {
 	if err := groningen.Update(groningen); err != nil {
 		panic(err)
 	}
-}
-
-func InitPetition(id string) *Petition {
-	return &Petition{Base: &entity.Base{ID: id}}
 }

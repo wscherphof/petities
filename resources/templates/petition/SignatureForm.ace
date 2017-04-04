@@ -28,7 +28,7 @@ body
           li {{$msg.Select $v}}
         {{end}}
     #petition-form
-      form.sticky
+      form.sticky method="POST" action="/signature"
         h2 {{.msg.Get "Sign this petition"}}
         p
           label {{.msg.Get "Name"}}
@@ -44,6 +44,8 @@ body
             label for="visible" {{.msg.Get "Visible"}}
         p
           input#submit type="submit" value={{.msg.Get "Submit signature"}}
+          input type="hidden" name="petition" value={{.petition.ID}}
+          input type="hidden" name="_formtoken" value={{._formtoken}}
   section#petition-details
     #petition-details-text
       h2 {{.msg.Get "Details"}}
