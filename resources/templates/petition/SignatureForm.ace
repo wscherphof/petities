@@ -35,7 +35,7 @@ body
             input#name type="text" name="name" autocomplete="name" placeholder={{.msg.Get "Name placeholder"}} required=
         p
           label {{.msg.Get "Email address"}}
-            input#email type="email" name="email" autocomplete="username" placeholder={{.msg.Get "Email placeholder"}} required=
+            input#email type="email" name="email" autocomplete="email" placeholder={{.msg.Get "Email placeholder"}} required=
         p
           label {{.msg.Get "City"}}
             input#city type="text" name="city" autocomplete="on" placeholder={{.msg.Get "City placeholder"}} required=
