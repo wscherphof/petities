@@ -8,18 +8,17 @@ import (
 
 type Petition struct {
 	*entity.Base
-	Address       msg.MessageType
-	Desk          msg.MessageType
-	Closed        time.Time
-	Answered      time.Time
-	Status        string
-	Websites      []*Website
-	NumSignatures msg.MessageType
-	Caption       msg.MessageType
-	Intro         msg.MessageType
-	We            msg.MessageType
-	Observations  []msg.MessageType
-	Requests      []msg.MessageType
+	Address      msg.MessageType
+	Desk         msg.MessageType
+	Closed       time.Time
+	Answered     time.Time
+	Status       string
+	Websites     []*Website
+	Caption      msg.MessageType
+	Intro        msg.MessageType
+	We           msg.MessageType
+	Observations []msg.MessageType
+	Requests     []msg.MessageType
 }
 
 type Website struct {
@@ -43,7 +42,7 @@ func InitSignature() *Signature {
 	return &Signature{Base: &entity.Base{}}
 }
 
-func (p *Petition) Sign(name, email, city string) (num int, err error, conflict bool) {
+func (p *Petition) Sign(name, email, city string) (err error, conflict bool) {
 	signature := InitSignature()
 	signature.Petition = p.ID
 	signature.Name = name
@@ -53,9 +52,17 @@ func (p *Petition) Sign(name, email, city string) (num int, err error, conflict 
 	return
 }
 
+var signaturePetitionIndex *entity.IndexType
+
+func (p *Petition) NumSignatures() (num int) {
+	signaturePetitionIndex.Count(p.ID, &num)
+	return
+}
+
 func init() {
 	entity.Register(&Petition{})
 	entity.Register(&Signature{}).Index("Petition")
+	signaturePetitionIndex = entity.Index(&Signature{}, "Petition")
 
 	groningen := InitPetition("groningen")
 	groningen.Address = msg.New().
@@ -85,9 +92,6 @@ func init() {
 				Set("en", "Tweet announcing this petition"),
 		},
 	)
-	groningen.NumSignatures = msg.New().
-		Set("nl", "179.538").
-		Set("en", "179,538")
 	groningen.Caption = msg.New().
 		Set("nl", "Laat Groningen niet zakken").
 		Set("en", "Don’t let Groningen down")

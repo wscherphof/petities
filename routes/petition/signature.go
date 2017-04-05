@@ -28,11 +28,11 @@ func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		petition := model.InitPetition(r.FormValue("petition"))
 		if err, _ := petition.Read(petition); err != nil {
 			template.Error(w, r, err, false)
-		} else if num, err, conflict := petition.Sign(name, email, city); err != nil {
+		} else if err, conflict := petition.Sign(name, email, city); err != nil {
 			template.Error(w, r, err, conflict)
 		} else {
 			t.Set("petition", petition.ID)
-			t.Set("num", strconv.Itoa(num))
+			t.Set("num", strconv.Itoa(petition.NumSignatures()))
 			t.Set("name", name)
 			t.Set("email", email)
 			t.Set("city", city)
