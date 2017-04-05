@@ -38,12 +38,12 @@ type Signature struct {
 	City     string
 }
 
-func InitSignature() *Signature {
-	return &Signature{Base: &entity.Base{}}
+func InitSignature(petition, email string) *Signature {
+	return &Signature{Base: &entity.Base{ID: petition + "|" + email}}
 }
 
 func (p *Petition) Sign(name, email, city string) (err error, conflict bool) {
-	signature := InitSignature()
+	signature := InitSignature(p.ID, email)
 	signature.Petition = p.ID
 	signature.Name = name
 	signature.Email = email
