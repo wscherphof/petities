@@ -8,18 +8,6 @@ import (
 	"strconv"
 )
 
-func SignatureForm(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	id := ps.ByName("id")
-	t := template.GET(w, r, "petition", "SignatureForm")
-	petition := model.InitPetition(id)
-	if err, empty := petition.Read(petition); err != nil && !empty {
-		template.Error(w, r, err, false)
-	} else {
-		t.Set("petition", petition)
-		t.Run()
-	}
-}
-
 func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if t := template.PRG(w, r, "petition", "Signature"); t == nil {
 		return

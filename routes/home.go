@@ -7,6 +7,6 @@ import (
 
 func init() {
 	router.GET("/", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		http.Redirect(w, r, "/petition/groningen", http.StatusSeeOther)
+		http.Redirect(w, r, "/petition?id=groningen", http.StatusSeeOther)
 	})
 }

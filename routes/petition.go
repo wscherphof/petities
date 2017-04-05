@@ -5,7 +5,7 @@ import (
 )
 
 func init() {
-	router.GET("/petition/:id", petition.SignatureForm)
+	router.GET("/petition", petition.Petition)
 
 	router.POST("/signature", petition.Signature)
 	router.GET("/signature/post", petition.Signature)
