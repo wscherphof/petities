@@ -20,7 +20,7 @@ func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 			template.Error(w, r, err, conflict)
 		} else {
 			t.Set("petition", petition.ID)
-			t.Set("num", strconv.Itoa(petition.NumSignatures()))
+			t.Set("num", strconv.Itoa(petition.NumSignatures))
 			t.Set("name", name)
 			t.Set("email", email)
 			t.Set("city", city)
