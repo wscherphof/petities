@@ -1,7 +1,0 @@
-= include ../includes/top .
-body
-  = include ../includes/header .
-  section
-    ul
-      
-  = include ../includes/footer .
