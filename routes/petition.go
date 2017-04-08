@@ -9,4 +9,6 @@ func init() {
 
 	router.POST("/signature", petition.Signature)
 	router.GET("/signature/post", petition.Signature)
+
+	router.POST("/provision", petition.Provision)
 }

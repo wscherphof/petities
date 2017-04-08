@@ -1,0 +1,10 @@
+= include ../includes/top .
+body style="margin-left:1em;"
+  ul
+    li
+      p
+        a href="/petition?id=groningen" Laat Groningen Niet Zakken
+  form method="POST" action="/provision"
+    p
+      input type="submit" value="Provision"
+    input type="hidden" name="_formtoken" value={{._formtoken}}
