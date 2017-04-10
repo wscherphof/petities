@@ -60,7 +60,7 @@ func (p *Petition) Sign(name, email, city string) (err error, conflict bool) {
 
 func init() {
 	entity.Register(&Petition{})
-	entity.Register(&Signature{}).Index("Petition")
+	entity.Register(&Signature{}).Index("Petition").Index("Created")
 
 	// Periodically update NumSignatures for each petition.
 	go func() {
@@ -69,8 +69,9 @@ func init() {
 			if cursor, err := entity.ReadAll(&Petition{}); err == nil {
 				defer cursor.Close()
 				petition := InitPetition()
+				signature := InitSignature("", "")
 				for cursor.Next(petition) {
-					entity.Index(&Signature{}, "Petition").Count(petition.ID,
+					signature.Index(signature, "Petition").Count(petition.ID,
 						&petition.NumSignatures,
 					)
 					if err := petition.Update(petition); err != nil {

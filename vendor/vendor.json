@@ -73,7 +73,7 @@
 			"revisionTime": "2017-04-02T21:05:58Z"
 		},
 		{
-			"checksumSHA1": "8tmRJ0D1pAZEzEFbfpC621mKpP8=",
+			"checksumSHA1": "8P7LeMMIPPu9OYO6zhqTktgEAqU=",
 			"path": "github.com/wscherphof/entity",
 			"revision": "607cde35264f6f73902ac593c4e5472e4db3ab68",
 			"revisionTime": "2017-04-05T20:26:40Z"
@@ -98,13 +98,13 @@
 			"revisionTime": "2017-04-02T21:05:58Z"
 		},
 		{
-			"checksumSHA1": "14iFMZALnP5k30ult77HWz91vOA=",
+			"checksumSHA1": "UKnmFKlvJu1JV809anyKHd1E0XQ=",
 			"path": "github.com/wscherphof/essix/model",
 			"revision": "189f04bf6ca87d1de75d1fd830be505e9f024309",
 			"revisionTime": "2017-04-02T21:05:58Z"
 		},
 		{
-			"checksumSHA1": "rhFno9BKZSJNG5tJmUEXT0Wzy6w=",
+			"checksumSHA1": "9AdzctK4d50ZbRlc9YpTD4eTSXA=",
 			"path": "github.com/wscherphof/essix/ratelimit",
 			"revision": "189f04bf6ca87d1de75d1fd830be505e9f024309",
 			"revisionTime": "2017-04-02T21:05:58Z"
@@ -160,7 +160,7 @@
 			"revisionTime": "2017-04-02T21:05:58Z"
 		},
 		{
-			"checksumSHA1": "jLl7sP20GlOc6WPSOo2Aw5KZdBw=",
+			"checksumSHA1": "Nd5QKNB55Coz50OSc0jp81ZeOuE=",
 			"origin": "github.com/wscherphof/entity/vendor/github.com/wscherphof/rethinkdb",
 			"path": "github.com/wscherphof/rethinkdb",
 			"revision": "607cde35264f6f73902ac593c4e5472e4db3ab68",

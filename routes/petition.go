@@ -11,4 +11,5 @@ func init() {
 	router.GET("/signature/post", petition.Signature)
 
 	router.POST("/provision", petition.Provision)
+	router.GET("/provision/post", petition.Provision)
 }

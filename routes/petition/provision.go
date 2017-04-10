@@ -10,8 +10,9 @@ import (
 	"time"
 )
 
-func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	groningen := model.InitPetition("groningen")
+var groningen = model.InitPetition("groningen")
+
+func setValues() {
 	groningen.Address = msg.New().
 		Set("nl", "Tweede Kamer").
 		Set("en", "House of Representatives")
@@ -91,15 +92,44 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 			Set("nl", "Internationaal kenniscentrum voor milieu in Groningen vestigen.").
 			Set("en", "Set up international knowledge center for environment in Groningen"),
 	)
-	if err := groningen.Update(groningen); err != nil {
-		template.Error(w, r, err, false)
-	}
-	go func() {
-		for i := 0; i < 190000; i++ {
-			name := fmt.Sprintf("%s %d", "I M Name", i)
-			email := fmt.Sprintf("%s.%d@groningen.com", "name", i)
-			groningen.Sign(name, email, "Sun City")
+}
+
+const NUM_SIGNATURES = 200000
+
+func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	if t := template.PRG(w, r, "petition", "Provision"); t == nil {
+		return
+	} else {
+		if err, empty := groningen.Read(groningen); err != nil {
+			if !empty {
+				template.Error(w, r, err, false)
+			} else {
+				setValues()
+				if err := groningen.Update(groningen); err != nil {
+					template.Error(w, r, err, false)
+				} else {
+					go func() {
+						for i := 0; i < NUM_SIGNATURES; i++ {
+							name := fmt.Sprintf("%s %d", "I M Name", i)
+							email := fmt.Sprintf("%s.%d@groningen.com", "name", i)
+							groningen.Sign(name, email, "Sun City")
+						}
+					}()
+				}
+				t.Set("statuscode", "1")
+				t.Set("status", "petition created, signatures loading...")
+				t.Run()
+			}
+		} else {
+			signature := model.InitSignature("", "")
+			index := signature.Index(signature, "Created")
+			if deleted, err := index.Skip(NUM_SIGNATURES).Delete(); err != nil {
+				template.Error(w, r, err, false)
+			} else {
+				t.Set("statuscode", "2")
+				t.Set("status", fmt.Sprintf("%d signatures deleted", deleted))
+				t.Run()
+			}
 		}
-	}()
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+	}
 }
