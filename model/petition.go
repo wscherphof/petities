@@ -46,9 +46,9 @@ type Signature struct {
 
 func InitSignature(petition, email string) *Signature {
 	return &Signature{
-		Base: &entity.Base{ID: petition + "|" + email},
+		Base:     &entity.Base{ID: petition + "|" + email},
 		Petition: petition,
-		Email: email,
+		Email:    email,
 	}
 }
 
@@ -70,17 +70,13 @@ func (p *Petition) Sign(name, email, city string) (err error, conflict bool) {
 	signature.Name = name
 	signature.City = city
 	if err, conflict = signature.Create(signature); err == nil {
-		go func() {
-			counter := InitCounter(p.ID)
-			if e, empty := counter.Read(counter); e != nil && !empty {
-				log.Println("ERROR:", e)
-			} else {
-				counter.Num++
-				if e := counter.Update(counter); e != nil {
-					log.Println("ERROR:", e)
-				}
-			}
-		}()
+		counter := InitCounter(p.ID)
+		if e, empty := counter.Read(counter); e != nil && !empty {
+			err = e
+		} else {
+			counter.Num++
+			err = counter.Update(counter)
+		}
 	}
 	return
 }
