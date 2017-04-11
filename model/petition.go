@@ -66,9 +66,9 @@ func init() {
 	go func() {
 		for {
 			time.Sleep(15 * time.Second)
-			if cursor, err := entity.ReadAll(&Petition{}); err == nil {
+			petition := InitPetition()
+			if cursor, err := petition.ReadAll(petition); err == nil {
 				defer cursor.Close()
-				petition := InitPetition()
 				signature := InitSignature("", "")
 				for cursor.Next(petition) {
 					signature.Index(signature, "Petition").Count(petition.ID,
