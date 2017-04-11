@@ -19,7 +19,9 @@ func Synchronise(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 			defer cursor.Close()
 			for cursor.Next(petition) {
 				go func() {
-					petition.Synchronise()
+					if err := petition.Synchronise(); err != nil {
+						log.Println("ERROR:", err)
+					}
 				}()
 				status = fmt.Sprintf("%s%s: %d, ", status, petition.ID, petition.NumSignatures)
 			}

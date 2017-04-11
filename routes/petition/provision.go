@@ -6,6 +6,7 @@ import (
 	"github.com/wscherphof/essix/template"
 	"github.com/wscherphof/msg"
 	"github.com/wscherphof/petities/model"
+	"log"
 	"net/http"
 	"time"
 )
@@ -114,7 +115,9 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 							email := fmt.Sprintf("%s.%d@groningen.com", "name", i)
 							groningen.Sign(name, email, "Sun City")
 						}
-						groningen.Synchronise()
+						if err := groningen.Synchronise(); err != nil {
+							log.Println("ERROR:", err)
+						}
 					}()
 				}
 				t.Set("statuscode", "1")
@@ -126,8 +129,9 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 			index := signature.Index(signature, "Created")
 			if deleted, err := index.Skip(NUM_SIGNATURES).Delete(); err != nil {
 				template.Error(w, r, err, false)
+			} else if err := groningen.Synchronise(); err != nil {
+				template.Error(w, r, err, false)
 			} else {
-				groningen.Synchronise()
 				t.Set("statuscode", "2")
 				t.Set("status", fmt.Sprintf("%d signatures deleted", deleted))
 				t.Run()

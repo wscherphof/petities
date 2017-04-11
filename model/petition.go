@@ -52,47 +52,32 @@ func InitSignature(petition, email string) *Signature {
 	}
 }
 
-type Counter struct {
-	*entity.Base
-	Num int
-}
-
-func InitCounter(opt_petition ...string) (counter *Counter) {
-	counter = &Counter{Base: &entity.Base{}}
-	if len(opt_petition) == 1 {
-		counter.ID = opt_petition[0]
-	}
-	return
-}
+var newSignatures = make(map[string]int, 100)
 
 func (p *Petition) Sign(name, email, city string) (err error, conflict bool) {
 	signature := InitSignature(p.ID, email)
 	signature.Name = name
 	signature.City = city
 	if err, conflict = signature.Create(signature); err == nil {
-		counter := InitCounter(p.ID)
-		if e, empty := counter.Read(counter); e != nil && !empty {
-			err = e
-		} else {
-			counter.Num++
-			err = counter.Update(counter)
-		}
+		newSignatures[p.ID]++
 	}
 	return
 }
 
-func (p *Petition) Synchronise() {
-	counter := InitCounter(p.ID)
+func (p *Petition) newSignatures(num int) (err error) {
+	var spare int
+	spare, p.NumSignatures, newSignatures[p.ID] = newSignatures[p.ID], num, 0
+	if err = p.Update(p); err != nil {
+		newSignatures[p.ID] += spare
+	}
+	return
+}
+
+func (p *Petition) Synchronise() (err error) {
+	var count int
 	signature := InitSignature("", "")
-	counter.Read(counter)
-	signature.Index(signature, "Petition").Count(p.ID,
-		&counter.Num,
-	)
-	p.NumSignatures = counter.Num
-	if err := counter.Update(counter); err != nil {
-		log.Println("ERROR:", err)
-	} else if err := p.Update(p); err != nil {
-		log.Println("ERROR:", err)
+	if err = signature.Index(signature, "Petition").Count(p.ID, &count); err == nil {
+		err = p.newSignatures(count)
 	}
 	return
 }
@@ -100,32 +85,22 @@ func (p *Petition) Synchronise() {
 func init() {
 	entity.Register(&Petition{})
 	entity.Register(&Signature{}).Index("Petition").Index("Created")
-	entity.Register(&Counter{})
 
 	// Periodically update NumSignatures for each petition.
 	go func() {
 		for {
-			counter := InitCounter()
-			if cursor, err := counter.ReadAll(counter); err != nil {
-				log.Println("ERROR:", err)
-			} else {
-				defer cursor.Close()
-				for cursor.Next(counter) {
-					petition := InitPetition(counter.ID)
-					if err, _ := petition.Read(petition); err != nil {
-						log.Println("ERROR:", err)
-					} else {
-						petition.NumSignatures = counter.Num
-						if err := petition.Update(petition); err != nil {
-							log.Println("ERROR:", err)
-						}
-					}
+			time.Sleep(30 * time.Second)
+			for k, v := range newSignatures {
+				if v < 1 {
+					continue
 				}
-				if cursor.Err() != nil {
-					log.Println("ERROR:", cursor.Err())
+				petition := InitPetition(k)
+				if err, _ := petition.Read(petition); err != nil {
+					log.Println("ERROR:", err)
+				} else if err := petition.newSignatures(petition.NumSignatures + newSignatures[k]); err != nil {
+					log.Println("ERROR:", err)
 				}
 			}
-			time.Sleep(60 * time.Second)
 		}
 	}()
 }
