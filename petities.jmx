@@ -119,8 +119,8 @@
           </HeaderManager>
           <hashTree/>
           <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="statuscode" enabled="true">
-            <stringProp name="HtmlExtractor.refname">statuscode</stringProp>
-            <stringProp name="HtmlExtractor.expr">[.statuscode]</stringProp>
+            <stringProp name="HtmlExtractor.refname">_statuscode</stringProp>
+            <stringProp name="HtmlExtractor.expr">.statuscode</stringProp>
             <stringProp name="HtmlExtractor.attribute"></stringProp>
             <stringProp name="HtmlExtractor.default"></stringProp>
             <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
@@ -130,13 +130,13 @@
           <hashTree/>
         </hashTree>
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If statuscode != 2" enabled="true">
-          <stringProp name="IfController.condition">${statuscode} != &apos;2&apos;</stringProp>
+          <stringProp name="IfController.condition">&quot;${_statuscode}&quot; != &quot;2&quot;</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
         </IfController>
         <hashTree>
           <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Stop test" enabled="true">
-            <intProp name="ActionProcessor.action">0</intProp>
-            <intProp name="ActionProcessor.target">0</intProp>
+            <intProp name="ActionProcessor.action">2</intProp>
+            <intProp name="ActionProcessor.target">2</intProp>
             <stringProp name="ActionProcessor.duration"></stringProp>
           </TestAction>
           <hashTree/>
