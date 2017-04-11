@@ -12,4 +12,7 @@ func init() {
 
 	router.POST("/provision", petition.Provision)
 	router.GET("/provision/post", petition.Provision)
+
+	router.POST("/synchronise", petition.Synchronise)
+	router.GET("/synchronise/post", petition.Synchronise)
 }

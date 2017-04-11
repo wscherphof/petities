@@ -8,3 +8,7 @@ body style="margin-left:1em;"
     p
       input type="submit" value="Provision"
     input type="hidden" name="_formtoken" value={{._formtoken}}
+  form method="POST" action="/synchronise"
+    p
+      input type="submit" value="Synchronise Counters"
+    input type="hidden" name="_formtoken" value={{._formtoken}}

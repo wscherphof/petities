@@ -78,3 +78,5 @@ body
       h2 {{.msg.Get "History"}}
       img#petition-details-history-graph src="/static/images/{{.petition.ID}}/geschiedenis-chart.png"
   footer
+  script.
+    document.title = '{{.msg.Select .petition.Caption}}' + ' - ' + document.title;

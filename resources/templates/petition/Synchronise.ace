@@ -1,0 +1,4 @@
+= include ../includes/top .
+body
+  p {{.status}}
+  p Synchronising... check database for status.
