@@ -100,6 +100,23 @@ func formTokenHandle(handle httprouter.Handle) httprouter.Handle {
 						</head>
 						<body>
 							<h2>Form token validation failed</h2>
+							<table>
+								<tr>
+									<th></th>
+									<th>IP</th>
+									<th>Path</th>
+								</tr>
+								<tr>
+									<th>this</th>
+									<td>` + this.IP + `</td>
+									<td>` + this.Path + `</td>
+								</tr>
+								<tr>
+									<th>that</th>
+									<td>` + that.IP + `</td>
+									<td>` + that.Path + `</td>
+								</tr>
+							</table>
 							<a id="location" href="` + referer.Path + `">Back</a>
 						</body>
 					</html>
