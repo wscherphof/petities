@@ -3,7 +3,7 @@
 	"ignore": "test",
 	"package": [
 		{
-			"checksumSHA1": "2avCvSn0XonfApKKuTMyiQmk7s0=",
+			"checksumSHA1": "ZKxETlJdB2XubMrZnXB0FQimVA8=",
 			"origin": "github.com/wscherphof/entity/vendor/github.com/Sirupsen/logrus",
 			"path": "github.com/Sirupsen/logrus",
 			"revision": "8764af2cfb386dfdda2a4c2c0a9bd63413666485",
@@ -17,7 +17,7 @@
 			"revisionTime": "2017-04-11T20:39:24Z"
 		},
 		{
-			"checksumSHA1": "qjr2SKQanbmna221z0Ce2n0hnDE=",
+			"checksumSHA1": "kBeNcaKk56FguvPSUCEaH6AxpRc=",
 			"origin": "github.com/wscherphof/entity/vendor/github.com/golang/protobuf/proto",
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "8764af2cfb386dfdda2a4c2c0a9bd63413666485",
@@ -79,7 +79,7 @@
 			"revisionTime": "2017-04-11T20:39:24Z"
 		},
 		{
-			"checksumSHA1": "Ooa7czCOyL14R2vES1GsIthtneo=",
+			"checksumSHA1": "QlYuFD+iOr7Asvb/KOT9PrFGczE=",
 			"origin": "github.com/wscherphof/entity/vendor/github.com/wscherphof/env",
 			"path": "github.com/wscherphof/env",
 			"revision": "8764af2cfb386dfdda2a4c2c0a9bd63413666485",
@@ -160,7 +160,7 @@
 			"revisionTime": "2017-04-11T20:39:39Z"
 		},
 		{
-			"checksumSHA1": "Q3grBU0bvplw19JneCloEgQpktk=",
+			"checksumSHA1": "Ef2LM+tcfe7so5GDDnFkLl5ruTs=",
 			"origin": "github.com/wscherphof/entity/vendor/github.com/wscherphof/rethinkdb",
 			"path": "github.com/wscherphof/rethinkdb",
 			"revision": "8764af2cfb386dfdda2a4c2c0a9bd63413666485",
@@ -236,7 +236,7 @@
 			"revisionTime": "2017-04-11T20:39:24Z"
 		},
 		{
-			"checksumSHA1": "412N7e7+ueRP9ej8IOl5khpYyoY=",
+			"checksumSHA1": "1xrcK4/LiP98awGcvqTL5CClTIc=",
 			"origin": "github.com/wscherphof/entity/vendor/gopkg.in/fatih/pool.v2",
 			"path": "gopkg.in/fatih/pool.v2",
 			"revision": "8764af2cfb386dfdda2a4c2c0a9bd63413666485",
