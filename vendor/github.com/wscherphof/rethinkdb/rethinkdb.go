@@ -23,8 +23,8 @@ func Connect(db, address string) (err error) {
 	DB = db
 	if Session, err = r.Connect(r.ConnectOpts{
 		Address: address,
-		InitialCap: 10,
-		MaxOpen: 20,
+		InitialCap: 25,
+		MaxOpen: 100,
 	}); err != nil {
 		return
 	}
