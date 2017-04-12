@@ -8,6 +8,7 @@ import (
 	"github.com/wscherphof/petities/model"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -95,12 +96,11 @@ func setValues() {
 	)
 }
 
-const NUM_SIGNATURES = 200000
-
 func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if t := template.PRG(w, r, "petition", "Provision"); t == nil {
 		return
 	} else {
+		num, _ := strconv.Atoi(r.FormValue("num"))
 		if err, empty := groningen.Read(groningen); err != nil {
 			if !empty {
 				template.Error(w, r, err, false)
@@ -110,7 +110,7 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 					template.Error(w, r, err, false)
 				} else {
 					go func() {
-						for i := 0; i < NUM_SIGNATURES; i++ {
+						for i := 0; i < num; i++ {
 							name := fmt.Sprintf("%s %d", "I M Name", i)
 							email := fmt.Sprintf("%s.%d@groningen.com", "name", i)
 							groningen.Sign(name, email, "Sun City")
@@ -127,7 +127,7 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		} else {
 			signature := model.InitSignature("", "")
 			index := signature.Index(signature, "Created")
-			if deleted, err := index.Skip(NUM_SIGNATURES).Delete(); err != nil {
+			if deleted, err := index.Skip(num).Delete(); err != nil {
 				template.Error(w, r, err, false)
 			} else if err := groningen.Synchronise(); err != nil {
 				template.Error(w, r, err, false)

@@ -6,6 +6,8 @@ body style="margin-left:1em;"
         a href="/petition?id=groningen" Laat Groningen Niet Zakken
   form method="POST" action="/provision"
     p
+      input type="text" name="num" value="1000"
+    p
       input type="submit" value="Provision"
     input type="hidden" name="_formtoken" value={{._formtoken}}
   form method="POST" action="/synchronise"
