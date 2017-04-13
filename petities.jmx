@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="num" elementType="Argument">
             <stringProp name="Argument.name">num</stringProp>
-            <stringProp name="Argument.value">1000</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -196,8 +196,8 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">500</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">60</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">30</stringProp>
         <longProp name="ThreadGroup.start_time">1491665126000</longProp>
         <longProp name="ThreadGroup.end_time">1491665126000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
