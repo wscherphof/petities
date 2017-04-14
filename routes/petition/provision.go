@@ -110,10 +110,19 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 					template.Error(w, r, err, false)
 				} else {
 					go func() {
-						for i := 0; i < num; i++ {
-							name := fmt.Sprintf("%s %d", "I M Name", i)
-							email := fmt.Sprintf("%s.%d@groningen.com", "name", i)
-							groningen.Sign(name, email, "Sun City")
+						for i := 0; i < num; i = i + 200 {
+							var batch [200]*model.Signature
+							for j := 0; j < 200 && i+j < num; j++ {
+								email := fmt.Sprintf("%s.%d@groningen.com", "name", i+j)
+								signature := model.InitSignature(groningen.ID, email)
+								signature.Name = fmt.Sprintf("%s %d", "I M Name", i+j)
+								signature.City = "Sun City"
+								batch[j] = signature
+							}
+							signature := model.InitSignature("", "")
+							if err, conflict := signature.Create(batch); err != nil {
+								log.Println("ERROR:", err, conflict)
+							}
 						}
 						if err := groningen.Synchronise(); err != nil {
 							log.Println("ERROR:", err)
