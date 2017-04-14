@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="num" elementType="Argument">
             <stringProp name="Argument.name">num</stringProp>
-            <stringProp name="Argument.value">0</stringProp>
+            <stringProp name="Argument.value">200000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -355,7 +355,7 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Delay" enabled="false">
+        <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Delay" enabled="true">
           <stringProp name="ConstantTimer.delay">10000</stringProp>
           <stringProp name="RandomTimer.range">2500.0</stringProp>
         </GaussianRandomTimer>
