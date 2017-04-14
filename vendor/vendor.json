@@ -160,17 +160,17 @@
 			"revisionTime": "2017-04-12T03:35:09Z"
 		},
 		{
-			"checksumSHA1": "UpC6VaYEkldFLm9zVV/F1iRvaqA=",
+			"checksumSHA1": "SpCbtKUUVKRFQ50sau7Xq//GAAs=",
 			"origin": "github.com/wscherphof/entity/vendor/github.com/wscherphof/rethinkdb",
 			"path": "github.com/wscherphof/rethinkdb",
 			"revision": "69b5250fe88e9802dc00349adbf64c99825705d8",
 			"revisionTime": "2017-04-12T03:34:40Z"
 		},
 		{
-			"checksumSHA1": "n0su8GeE3gSj2QPVQZ0Vq7V3Mck=",
+			"checksumSHA1": "XYgZBgjMXDYQrAmaPIOZ78hGV6w=",
 			"path": "github.com/wscherphof/secure",
-			"revision": "aa56d4fdc473a3286a996aaac707382b6a32483e",
-			"revisionTime": "2016-10-26T13:25:56Z"
+			"revision": "11b7fb48e46ffc9930afdd623a08baf9128eedd5",
+			"revisionTime": "2017-04-13T21:52:43Z"
 		},
 		{
 			"checksumSHA1": "EBdlrNruUlsU7XyA777y8Jp7LEU=",
