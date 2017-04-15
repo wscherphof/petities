@@ -1,0 +1,8 @@
+= include ../includes/top .
+body style="margin-left:1em;"
+  form method="POST" action="/provision"
+    input type="hidden" name="_formtoken" value={{._formtoken}}
+    p
+      input type="text" name="num" value="1000"
+    p
+      input type="submit" value="Provision"
