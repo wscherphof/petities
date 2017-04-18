@@ -33,21 +33,21 @@ func init() {
 		Set("nl", "Naam").
 		Set("en", "Name")
 
-	msg.Key("Email address").
-		Set("nl", "E-mailadres").
-		Set("en", "Email address")
-
-	msg.Key("City").
-		Set("nl", "Woonplaats").
-		Set("en", "Place of residence")
-
 	msg.Key("Name placeholder").
 		Set("nl", "Voorletter en achternaam minstens").
 		Set("en", "Initial and surname at least")
 
+	msg.Key("Email address").
+		Set("nl", "E-mailadres").
+		Set("en", "Email address")
+
 	msg.Key("Email placeholder").
 		Set("nl", "gebruikersnaam@iets.iets").
 		Set("en", "username@something.something")
+
+	msg.Key("City").
+		Set("nl", "Woonplaats").
+		Set("en", "Place of residence")
 
 	msg.Key("City placeholder").
 		Set("nl", "Waar u nu woont, op het tijdstip van ondertekenen").
@@ -57,9 +57,29 @@ func init() {
 		Set("nl", "mijn naam en woonplaats mogen publiekelijk zichtbaar zijn onder de petitie.").
 		Set("en", "Publish my name visibly below the petition.")
 
+	msg.Key("Understand").
+		Set("nl", "ik begrijp dat dit een showcase is en niet de echte petitie.").
+		Set("en", "I understand this is a showcase, not the actual petition.")
+
 	msg.Key("Submit signature").
 		Set("nl", "Ja, ik onderteken deze petitie").
 		Set("en", "Yes, I sign this petition")
+
+	msg.Key("Please acknowledge").
+		Set("nl", "Bevestig alstublieft").
+		Set("en", "Please confirm")
+
+	msg.Key("Ack").
+		Set("nl", "Mijn unieke bevestigingscode").
+		Set("en", "My unique confirmation token")
+
+	msg.Key("Acknowledge").
+		Set("nl", "Mijn ondertekening bevestigen").
+		Set("en", "Confirm my subscription")
+
+	msg.Key("ErrAlreadyAcknowledged").
+		Set("nl", "Deze ondertekening was al bevestigd 👍").
+		Set("en", "This signature has been confirmed already 👍")
 
 	msg.Key("Details").
 		Set("nl", "Details").

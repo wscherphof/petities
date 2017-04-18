@@ -1,0 +1,13 @@
+= content main
+  p
+    |
+      Thank you. It is now important to confirm your signature. On address
+      {{.email}} you will receive an e-mail from real.essix@gmail.com with
+      "Please confirm" in the subject line. Also check your spam mailbox if you
+      can not find it. Without confirmation your signature does not count.
+  p
+    small
+      |
+        We e-mail you a link to confirm your signature.
+        Your data will not be shared with third parties.
+        

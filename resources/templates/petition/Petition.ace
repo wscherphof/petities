@@ -43,6 +43,9 @@ body
           input#visible type="checkbox" name="visible"
             label for="visible" {{.msg.Get "Visible"}}
         p
+          input#understand type="checkbox" name="understand" required=
+            label for="understand" {{.msg.Get "Understand"}}
+        p
           input#submit type="submit" value={{.msg.Get "Submit signature"}}
           input type="hidden" name="petition" value={{.petition.ID}}
           input type="hidden" name="_formtoken" value={{._formtoken}}

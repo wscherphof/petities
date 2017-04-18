@@ -1,0 +1,15 @@
+= content main
+  p..
+    Thanks for your interest!
+    (If you don't know us, and you didn't sign the petition, then please accept our apologies, and regard this message as unsent)
+    To complete the signing process, there's one thing you should do now: acknowledge your signature.
+  p 
+    a href={{.link}} Please follow this link to the acknowledge page
+  p
+    || But you're aware this isn't the actual petition.
+    | To support the real one, don't hesitate to visit: {{""}}
+    a href=https://www.petities.nl/petitions/laat-groningen-niet-zakken?locale=en petities.nl
+  p
+    || Cheers,
+    | Team {{""}}
+    a href="https://wscherphof.wordpress.com" FullyFeatured

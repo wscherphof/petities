@@ -1,10 +1,17 @@
 package model
 
 import (
+	"errors"
 	"github.com/wscherphof/entity"
+	essix "github.com/wscherphof/essix/model"
+	"github.com/wscherphof/essix/util"
 	"github.com/wscherphof/msg"
 	"log"
 	"time"
+)
+
+var (
+	ErrAlreadyAcknowledged = errors.New("ErrAlreadyAcknowledged")
 )
 
 type Petition struct {
@@ -38,28 +45,35 @@ func InitPetition(opt_id ...string) (petition *Petition) {
 
 type Signature struct {
 	*entity.Base
-	Petition string
-	Name     string
-	Email    string
-	City     string
+	Petition         string
+	Name             string
+	Email            string
+	City             string
+	Visible          bool
+	AcknowledgeToken string
 }
 
 func InitSignature(petition, email string) *Signature {
 	return &Signature{
-		Base:     &entity.Base{ID: petition + "|" + email},
-		Petition: petition,
-		Email:    email,
+		Base:             &entity.Base{ID: petition + "|" + email},
+		Petition:         petition,
+		Email:            email,
+		AcknowledgeToken: util.NewToken(),
 	}
 }
 
 var newSignatures = make(map[string]int, 100)
 
-func (p *Petition) Sign(name, email, city string) (err error, conflict bool) {
-	signature := InitSignature(p.ID, email)
-	signature.Name = name
-	signature.City = city
-	if err, conflict = signature.Create(signature); err == nil {
-		newSignatures[p.ID]++
+func (s *Signature) Acknowledge(ack string) (err error, conflict bool) {
+	if s.AcknowledgeToken == "" {
+		return ErrAlreadyAcknowledged, true
+	}
+	if s.AcknowledgeToken != ack {
+		return essix.ErrInvalidCredentials, true
+	}
+	s.AcknowledgeToken = ""
+	if err = s.Update(s); err == nil {
+		newSignatures[s.Petition]++
 	}
 	return
 }
@@ -84,7 +98,7 @@ func (p *Petition) Synchronise() (err error) {
 
 func init() {
 	entity.Register(&Petition{})
-	entity.Register(&Signature{}).Index("Petition").Index("Created")
+	entity.Register(&Signature{}).Index("Petition").Index("Created").Index("AcknowledgeToken")
 
 	// Periodically update NumSignatures for each petition.
 	go func() {

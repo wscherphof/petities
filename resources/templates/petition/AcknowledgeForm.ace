@@ -1,0 +1,16 @@
+= include ../includes/top .
+body style="margin-left:1em;"
+  main
+    form method="POST" action="/signature/ack"
+      input type="hidden" name="_method" value="PUT"
+      input type="hidden" name="_formtoken" value={{._formtoken}}
+      input type="hidden" name="petition" value={{.petition}}
+      input type="hidden" name="ack" value={{.ack}}
+      p
+        label {{.msg.Get "Petition"}}
+          input#name type="text" value={{.msg.Select .caption}} disabled=
+      p
+        label {{.msg.Get "Email address"}}
+          input#email type="email" name="email" value={{.email}} readonly=
+      p
+        input#submit type="submit" value={{.msg.Get "Acknowledge"}}

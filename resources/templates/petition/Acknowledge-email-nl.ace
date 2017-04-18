@@ -1,0 +1,16 @@
+= content main
+  p..
+    Bedankt voor je interesse!
+    Om je steun te onderschrijven moet je nog één ding doen: je ondertekening bevestigen.
+    (Als je dit niets zegt, dan bieden wij onze excuses aan en verzoeken we je dit bericht te beschouwen als niet verzonden)
+  p 
+    a href={{.link}} Klik op deze link voor de bevestigingspagina
+  p
+    || Maar je weet dat dit niet de echte petitie betreft.
+    | Om die te steunen: ga meteen naar {{""}}
+    a href=https://www.petities.nl/petitions/laat-groningen-niet-zakken?locale=nl petities.nl
+  p
+    || Dank,
+    || Met vriendelijke groet,
+    | Team {{""}}
+    a href="https://wscherphof.wordpress.com" FullyFeatured
