@@ -111,21 +111,22 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 				} else {
 					go func() {
 						for i := 0; i < num; i = i + 200 {
-							var batch [200]*model.Signature
+							batch := make([]*model.Signature, 0)
 							for j := 0; j < 200 && i+j < num; j++ {
 								email := fmt.Sprintf("%s.%d@groningen.com", "name", i+j)
 								signature := model.InitSignature(groningen.ID, email)
+								signature.AcknowledgeToken = ""
 								signature.Name = fmt.Sprintf("%s %d", "I M Name", i+j)
 								signature.City = "Sun City"
-								batch[j] = signature
+								batch = append(batch, signature)
 							}
 							signature := model.InitSignature("", "")
 							if err, conflict := signature.Create(batch); err != nil {
-								log.Println("ERROR:", err, conflict)
+								log.Println("ERROR: Provision - signature.Create", err, conflict)
 							}
 						}
 						if err := groningen.Synchronise(); err != nil {
-							log.Println("ERROR:", err)
+							log.Println("ERROR: Provision - groningen.Synchronise", err)
 						}
 					}()
 				}

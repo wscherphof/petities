@@ -20,13 +20,13 @@ func Synchronise(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 			for cursor.Next(petition) {
 				go func() {
 					if err := petition.Synchronise(); err != nil {
-						log.Println("ERROR:", err)
+						log.Println("ERROR: Synchronise - petition.Synchronise", err)
 					}
 				}()
 				status = fmt.Sprintf("%s%s: %d, ", status, petition.ID, petition.NumSignatures)
 			}
 			if cursor.Err() != nil {
-				log.Println("ERROR:", cursor.Err())
+				log.Println("ERROR: Synchronise - cursor.Err()", cursor.Err())
 			}
 		}
 		t.Set("status", status)

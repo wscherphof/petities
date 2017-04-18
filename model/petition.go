@@ -90,7 +90,8 @@ func (p *Petition) newSignatures(num int) (err error) {
 func (p *Petition) Synchronise() (err error) {
 	var count int
 	signature := InitSignature("", "")
-	if err = signature.Index(signature, "Petition").Count(p.ID, &count); err == nil {
+	index := signature.Index(signature, "Petition+AcknowledgeToken")
+	if err = index.Count(&count, p.ID, ""); err == nil {
 		err = p.newSignatures(count)
 	}
 	return
@@ -98,7 +99,9 @@ func (p *Petition) Synchronise() (err error) {
 
 func init() {
 	entity.Register(&Petition{})
-	entity.Register(&Signature{}).Index("Petition").Index("Created").Index("AcknowledgeToken")
+	entity.Register(&Signature{}).
+		Index("Created").
+		Index("Petition+AcknowledgeToken", "Petition", "AcknowledgeToken")
 
 	// Periodically update NumSignatures for each petition.
 	go func() {
