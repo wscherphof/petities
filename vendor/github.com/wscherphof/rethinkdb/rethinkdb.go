@@ -4,7 +4,6 @@ import (
 	r "gopkg.in/gorethink/gorethink.v3"
 	"github.com/wscherphof/env"
 	"strings"
-	"log"
 )
 
 var (
@@ -71,7 +70,6 @@ func IndexCreate(table, name string, opt_fields ...string) (resp r.WriteResponse
 			return values
 		}).RunWrite(Session)
 	}
-	log.Printf("DEBUG: IndexCreate %s, %s, %v, %d, %v", table, name, opt_fields, resp.Created, err)
 	return
 }
 
@@ -107,8 +105,12 @@ func GetIndex(table, index string, result interface{}, values ...interface{}) er
 }
 
 func CountIndex(table, index string, result interface{}, values ...interface{}) error {
-	cursor, err := r.DB(DB).Table(table).GetAllByIndex(index, values...).Count().Run(Session)
-	log.Printf("DEBUG: CountIndex %s, %s, %v, %v, %v", table, index, values, cursor, err)
+	num := len(values)
+	keys := make([]interface{}, num, num)
+	for i, v := range values {
+		keys[i] = v
+	}
+	cursor, err := r.DB(DB).Table(table).GetAllByIndex(index, keys).Count().Run(Session)
 	return one(cursor, err, result)
 }
 
