@@ -98,8 +98,8 @@ func (p *Petition) Synchronise() (err error) {
 }
 
 func init() {
-	entity.Register(&Petition{})
-	entity.Register(&Signature{}).
+	entity.Register(InitPetition())
+	entity.Register(InitSignature("", "")).
 		Index("Created").
 		Index("Petition+AcknowledgeToken", "Petition", "AcknowledgeToken")
 
