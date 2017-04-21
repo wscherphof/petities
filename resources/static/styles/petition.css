@@ -30,6 +30,12 @@ h2 {
   letter-spacing: .05em;
 }
 
+.h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 h3 {
   margin-top:.5em;
   margin-bottom:.3em;
@@ -55,7 +61,7 @@ input[type=text],
 input[type=email],
 input[type=password] {
   display: block;
-  width: 96%;
+  width: 95%;
   padding: .5em;
   font: 400 14px/14px 'open_sansregular', arial, sans-serif;
   color: #000;
@@ -92,7 +98,6 @@ label[for] {
 .sticky {
   position: sticky;
   top: 2em;
-  /* margin-bottom: 1em; */
 }
 
 section {
@@ -138,6 +143,12 @@ section {
 #petition-form {
   background-image:url(/static/images/signature-form-background.gif);
   background-repeat:repeat-y;
+}
+
+#petition-form-iframe {
+  width: 100%;
+  border-width: 0;
+  margin-bottom: -1em;
 }
 
 #petition-details {

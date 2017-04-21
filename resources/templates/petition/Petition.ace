@@ -28,27 +28,20 @@ body
           li {{$msg.Select $v}}
         {{end}}
     #petition-form
-      form.sticky method="POST" action="/signature"
-        h2 {{.msg.Get "Sign this petition"}}
-        p
-          label {{.msg.Get "Name"}}
-            input#name type="text" name="name" autocomplete="name" placeholder={{.msg.Get "Name placeholder"}} required=
-        p
-          label {{.msg.Get "Email address"}}
-            input#email type="email" name="email" autocomplete="email" placeholder={{.msg.Get "Email placeholder"}} required=
-        p
-          label {{.msg.Get "City"}}
-            input#city type="text" name="city" autocomplete="on" placeholder={{.msg.Get "City placeholder"}} required=
-        p
-          input#visible type="checkbox" name="visible"
-            label for="visible" {{.msg.Get "Visible"}}
-        p
-          input#understand type="checkbox" name="understand" required=
-            label for="understand" {{.msg.Get "Understand"}}
-        p
-          input#submit type="submit" value={{.msg.Get "Submit signature"}}
-          input type="hidden" name="petition" value={{.petition.ID}}
-          input type="hidden" name="_formtoken" value={{._formtoken}}
+      / Script sets iframe's height to fit its contents.
+      / Setting height:100% breaks the position:sticky.
+      script.
+        document.addEventListener('DOMContentLoaded', function(){
+          var iframe = document.getElementById('petition-form-iframe');
+          var content = iframe.contentWindow;
+          function resize() {
+            iframe.style.height = content.document.body.scrollHeight + 'px';
+          }
+          content.addEventListener('load', resize);
+          content.addEventListener('resize', resize);
+        });
+      iframe#petition-form-iframe.sticky src="/signature?petition={{.petition.ID}}"
+        = yield form
   section#petition-details
     #petition-details-text
       h2 {{.msg.Get "Details"}}

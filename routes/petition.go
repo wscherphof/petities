@@ -8,6 +8,7 @@ import (
 func init() {
 	router.GET("/petition", petition.Petition)
 
+	router.GET("/signature", petition.SignatureForm)
 	router.POST("/signature", petition.Signature)
 	router.GET("/signature/post", petition.Signature)
 

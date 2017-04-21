@@ -1,4 +1,4 @@
 = include ../includes/top .
 body
-  main
-    = yield main
+  img.h2 src="/static/images/success.png"
+  = yield main

@@ -7,6 +7,17 @@ import (
 	"net/http"
 )
 
+func SignatureForm(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	t := template.GET(w, r, "petition", "SignatureForm", "SignatureForm-form")
+	petition := model.InitPetition(r.FormValue("petition"))
+	if err, _ := petition.Read(petition); err != nil {
+		template.Error(w, r, err, false)
+	} else {
+		t.Set("petition", petition.ID)
+		t.Run()
+	}
+}
+
 func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if t := template.PRG(w, r, "petition", "Signature", "lang"); t == nil {
 		return

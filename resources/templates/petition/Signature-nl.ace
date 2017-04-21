@@ -1,14 +1,12 @@
 = content main
+  p.
+    Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen.
+    Op e-mailadres {{.email}} ontvangt u een e-mail van real.essix@gmail.com met
+    "Bevestig alstublieft" in de onderwerp-regel.
+    Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden.
+    Zonder bevestiging telt uw ondertekening niet mee.
   p
-    |
-      Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op
-      e-mailadres {{.email}} ontvangt u een e-mail van real.essix@gmail.com met
-      "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-
-      postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw 
-      ondertekening niet mee.
-  p
-    small
-      |
-        We e-mailen u een link waarmee u uw ondertekening kunt bevestigen.
-        Uw gegevens worden niet doorgespeeld aan derden.
+    small.
+      We e-mailen u een link waarmee u uw ondertekening kunt bevestigen.
+      Uw gegevens worden niet doorgespeeld aan derden.
         
