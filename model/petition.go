@@ -51,15 +51,25 @@ type Signature struct {
 	City             string
 	Visible          bool
 	AcknowledgeToken string
+	Acknowledged     bool
 }
 
 func InitSignature(petition, email string) *Signature {
 	return &Signature{
-		Base:             &entity.Base{ID: petition + "|" + email},
+		Base: &entity.Base{
+			Table: petition + "_Signature",
+			ID:    email,
+		},
 		Petition:         petition,
 		Email:            email,
 		AcknowledgeToken: util.NewToken(),
 	}
+}
+
+func (s *Signature) Register() {
+	entity.Register(s).
+		Index("Created").
+		Index("Acknowledged")
 }
 
 var newSignatures = make(map[string]int, 100)
@@ -71,7 +81,7 @@ func (s *Signature) Acknowledge(ack string) (err error, conflict bool) {
 	if s.AcknowledgeToken != ack {
 		return essix.ErrInvalidCredentials, true
 	}
-	s.AcknowledgeToken = ""
+	s.AcknowledgeToken, s.Acknowledged = "", true
 	if err = s.Update(s); err == nil {
 		newSignatures[s.Petition]++
 	}
@@ -89,9 +99,9 @@ func (p *Petition) newSignatures(num int) (err error) {
 
 func (p *Petition) Synchronise() (err error) {
 	var count int
-	signature := InitSignature("", "")
-	index := signature.Index(signature, "Petition+AcknowledgeToken")
-	if err = index.Count(&count, p.ID, ""); err == nil {
+	signature := InitSignature(p.ID, "")
+	index := signature.Index(signature, "Acknowledged")
+	if err = index.Count(&count, true); err == nil {
 		err = p.newSignatures(count)
 	}
 	return
@@ -99,9 +109,6 @@ func (p *Petition) Synchronise() (err error) {
 
 func init() {
 	entity.Register(InitPetition())
-	entity.Register(InitSignature("", "")).
-		Index("Created").
-		Index("Petition+AcknowledgeToken", "Petition", "AcknowledgeToken")
 
 	// Periodically update NumSignatures for each petition.
 	go func() {

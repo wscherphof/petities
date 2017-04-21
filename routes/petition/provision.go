@@ -109,6 +109,8 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 				if err := groningen.Update(groningen); err != nil {
 					template.Error(w, r, err, false)
 				} else {
+					signature := model.InitSignature(groningen.ID, "")
+					signature.Register()
 					go func() {
 						for i := 0; i < num; i = i + 200 {
 							batch := make([]*model.Signature, 0)
@@ -120,7 +122,7 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 								signature.City = "Sun City"
 								batch = append(batch, signature)
 							}
-							signature := model.InitSignature("", "")
+							signature := model.InitSignature(groningen.ID, "")
 							if err, conflict := signature.Create(batch); err != nil {
 								log.Println("ERROR: Provision - signature.Create", err, conflict)
 							}
@@ -135,7 +137,7 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 				t.Run()
 			}
 		} else {
-			signature := model.InitSignature("", "")
+			signature := model.InitSignature(groningen.ID, "")
 			index := signature.Index(signature, "Created")
 			if deleted, err := index.Skip(num).Delete(); err != nil {
 				template.Error(w, r, err, false)
