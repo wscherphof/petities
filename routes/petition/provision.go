@@ -115,11 +115,11 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 						for i := 0; i < num; i = i + 200 {
 							batch := make([]*model.Signature, 0)
 							for j := 0; j < 200 && i+j < num; j++ {
-								email := fmt.Sprintf("%s.%d@groningen.com", "name", i+j)
+								email := fmt.Sprintf("name.%d@groningen.com", i+j)
 								signature := model.InitSignature(groningen.ID, email)
-								signature.AcknowledgeToken = ""
-								signature.Name = fmt.Sprintf("%s %d", "I M Name", i+j)
+								signature.Name = fmt.Sprintf("I M Name %d", i+j)
 								signature.City = "Sun City"
+								signature.Acknowledged = true
 								batch = append(batch, signature)
 							}
 							signature := model.InitSignature(groningen.ID, "")

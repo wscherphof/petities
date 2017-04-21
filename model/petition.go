@@ -45,12 +45,11 @@ func InitPetition(opt_id ...string) (petition *Petition) {
 
 type Signature struct {
 	*entity.Base
-	Petition         string
+	petition         string
 	Name             string
-	Email            string
 	City             string
 	Visible          bool
-	AcknowledgeToken string
+	AcknowledgeToken string `gorethink:",omitempty"`
 	Acknowledged     bool
 }
 
@@ -60,9 +59,8 @@ func InitSignature(petition, email string) *Signature {
 			Table: petition + "_Signature",
 			ID:    email,
 		},
-		Petition:         petition,
-		Email:            email,
 		AcknowledgeToken: util.NewToken(),
+		petition:         petition,
 	}
 }
 
@@ -83,7 +81,7 @@ func (s *Signature) Acknowledge(ack string) (err error, conflict bool) {
 	}
 	s.AcknowledgeToken, s.Acknowledged = "", true
 	if err = s.Update(s); err == nil {
-		newSignatures[s.Petition]++
+		newSignatures[s.petition]++
 	}
 	return
 }
@@ -98,11 +96,10 @@ func (p *Petition) newSignatures(num int) (err error) {
 }
 
 func (p *Petition) Synchronise() (err error) {
-	var count int
 	signature := InitSignature(p.ID, "")
 	index := signature.Index(signature, "Acknowledged")
-	if err = index.Count(&count, true); err == nil {
-		err = p.newSignatures(count)
+	if err = index.Count(&(p.NumSignatures), true); err == nil {
+		err = p.Update(p)
 	}
 	return
 }
