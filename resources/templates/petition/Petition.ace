@@ -29,13 +29,14 @@ body
         {{end}}
     #petition-form
       / Script sets iframe's height to fit its contents.
-      / Setting height:100% breaks the position:sticky.
       script.
         document.addEventListener('DOMContentLoaded', function(){
           var iframe = document.getElementById('petition-form-iframe');
           var content = iframe.contentWindow;
+          if (!content) return;
           function resize() {
-            iframe.style.height = content.document.body.scrollHeight + 'px';
+            iframe.style.height = '';
+            iframe.style.height = content.document.forms[0].scrollHeight + 'px';
           }
           content.addEventListener('load', resize);
           content.addEventListener('resize', resize);
