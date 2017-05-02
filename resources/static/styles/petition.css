@@ -61,7 +61,7 @@ input[type=text],
 input[type=email],
 input[type=password] {
   display: block;
-  width: 95%;
+  width: 93%;
   padding: .5em;
   font: 400 14px/14px 'open_sansregular', arial, sans-serif;
   color: #000;
@@ -97,7 +97,8 @@ label[for] {
 
 .sticky {
   position: sticky;
-  top: 2em;
+  top: 1em;
+  overflow: hidden;
 }
 
 section {
@@ -149,6 +150,7 @@ section {
   width: 100%;
   height: 100%;
   border-width: 0;
+  margin-bottom: -1em;
 }
 
 #petition-details {
