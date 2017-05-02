@@ -70,7 +70,7 @@ input[type=password] {
 
 input[type=submit] {
   display: block;
-  width: 99%;
+  width: 97%;
   padding: .5em;
   font: 400 17px/28px 'open_sansregular', arial, sans-serif;
   color: #fff;
