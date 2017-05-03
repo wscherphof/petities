@@ -40,6 +40,11 @@ body
             if (!XMLHttpRequest || !FormData) return;
             var form = document.getElementById('signature-form');
             var request = new XMLHttpRequest();
+            form.addEventListener('submit', function(e) {
+              e.preventDefault();
+              request.open(form.method, form.action);
+              request.send(new FormData(form));
+            });
             request.onreadystatechange = function() {
               if (request.readyState !== XMLHttpRequest.DONE) return;
               var body = getBody(request.responseText);
@@ -49,12 +54,14 @@ body
                 form.outerHTML = body;
               }
             };
-            form.addEventListener('submit', function(e) {
-              e.preventDefault();
-              request.open(form.method, form.action);
-              request.send(new FormData(form));
-            });
           });
+          function getBody(html) {
+            var body = null;
+            var re = /<\/{0,1}body[^>]*>/;
+            var splits = html.split(re, 2);
+            if (splits.length === 2) body = splits[1];
+            return body;
+          }
       /
         // iframe supported: form fetched by iframe's request.
         //   w/o javascript: iframe's contents are made visible through
@@ -76,9 +83,6 @@ body
             iframe.style.height = contentWindow.document.body.clientHeight + 'px';
           }
         });
-      /
-        // utils
-      script.
         function throttle(callback, timeout) {
           // cf. https://developer.mozilla.org/en-US/docs/Web/Events/resize#setTimeout
           timeout = timeout || 66; // 15 fps
@@ -90,13 +94,6 @@ body
               callback(e);
             }, timeout);
           };
-        }
-        function getBody(html) {
-          var body = null;
-          var re = /<\/{0,1}body[^>]*>/;
-          var splits = html.split(re, 2);
-          if (splits.length === 2) body = splits[1];
-          return body;
         }
   section#petition-details
     #petition-details-text
