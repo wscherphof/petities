@@ -16,6 +16,7 @@
     p
       input#understand type="checkbox" name="understand" required=
         label for="understand" {{.msg.Get "Understand"}}
-    input type="submit" value={{.msg.Get "Submit signature"}}
+    p
+      input type="submit" value={{.msg.Get "Submit signature"}}
     input type="hidden" name="petition" value={{.petitionID}}
     input type="hidden" name="_formtoken" value={{._formtoken}}
