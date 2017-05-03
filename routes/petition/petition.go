@@ -8,12 +8,13 @@ import (
 )
 
 func Petition(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	t := template.GET(w, r, "petition", "Petition")
+	t := template.GET(w, r, "petition", "Petition", "SignatureForm-form")
 	petition := model.InitPetition(r.FormValue("id"))
 	if err, empty := petition.Read(petition); err != nil {
 		template.Error(w, r, err, empty)
 	} else {
 		t.Set("petition", petition)
+		t.Set("petitionID", petition.ID) // for signature form
 		t.Run()
 	}
 }

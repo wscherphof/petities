@@ -1,5 +1,5 @@
 = content form
-  form.sticky method="POST" action="/signature"
+  form#signature-form.sticky method="POST" action="/signature"
     h2 {{.msg.Get "Sign this petition"}}
     p
       label {{.msg.Get "Name"}}
@@ -16,7 +16,6 @@
     p
       input#understand type="checkbox" name="understand" required=
         label for="understand" {{.msg.Get "Understand"}}
-    p
-      input#submit type="submit" value={{.msg.Get "Submit signature"}}
-      input type="hidden" name="petition" value={{.petition}}
-      input type="hidden" name="_formtoken" value={{._formtoken}}
+    input type="submit" value={{.msg.Get "Submit signature"}}
+    input type="hidden" name="petition" value={{.petitionID}}
+    input type="hidden" name="_formtoken" value={{._formtoken}}

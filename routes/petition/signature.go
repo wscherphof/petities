@@ -13,7 +13,7 @@ func SignatureForm(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 	if err, _ := petition.Read(petition); err != nil {
 		template.Error(w, r, err, false)
 	} else {
-		t.Set("petition", petition.ID)
+		t.Set("petitionID", petition.ID)
 		t.Run()
 	}
 }

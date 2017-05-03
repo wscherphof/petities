@@ -28,40 +28,72 @@ body
           li {{$msg.Select $v}}
         {{end}}
     #petition-form
+      iframe#petition-form-iframe.sticky src="/signature?petition={{.petition.ID}}"
+        /
+          // iframe unsupported: form rendered inline directly.
+          //   w/o javascript: submit refreshes page.
+          //   w/ javascript: submit by ajax, replacing form fragment with
+          //     server response.
+        = yield form
+        script.
+          document.addEventListener('DOMContentLoaded', function(){
+            if (!XMLHttpRequest || !FormData) return;
+            var form = document.getElementById('signature-form');
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+              if (request.readyState !== XMLHttpRequest.DONE) return;
+              var body = getBody(request.responseText);
+              if (!body) {
+                alert('Cannot process server response:\n' + request.responseText);
+              } else {
+                form.outerHTML = body;
+              }
+            };
+            form.addEventListener('submit', function(e) {
+              e.preventDefault();
+              request.open(form.method, form.action);
+              request.send(new FormData(form));
+            });
+          });
       /
-        // w/o javascript: iframe's contents are made visible through
-        // height=100%, at the cost of the .sticky behaviour.
-        // w/ javascript: on resize, iframe's height is reset to precisely fit
-        // its contents, effectuating the .sticky behaviour.
+        // iframe supported: form fetched by iframe's request.
+        //   w/o javascript: iframe's contents are made visible through
+        //     height=100%, at the cost of the .sticky behaviour.
+        //   w/ javascript: on resize, iframe's height is reset to precisely fit
+        //     its contents, effectuating the .sticky behaviour.
       script.
         document.addEventListener('DOMContentLoaded', function(){
           var iframe = document.getElementById('petition-form-iframe');
           var content = iframe.contentWindow;
           if (!content) return;
-          function throttle(callback) {
-            // cf. https://developer.mozilla.org/en-US/docs/Web/Events/resize#setTimeout
-            var skip;
-            return function(e) {
-              if (skip) return;
-              skip = setTimeout(function(){
-                skip = null;
-                callback(e);
-              }, 66);
-            };
-          }
           function resize() {
             iframe.style.height = '';
-            iframe.style.height = content.document.forms[0].scrollHeight + 'px';
+            iframe.style.height = content.document.body.clientHeight + 'px';
           }
           content.addEventListener('load', resize);
           content.addEventListener('resize', throttle(resize));
         });
-      iframe#petition-form-iframe.sticky src="/signature?petition={{.petition.ID}}"
-        /
-          // w/o iframe support: render form inline, submit loads entire page.
-          // Could add script to submit through ajax, but doubt if the case
-          // (iframe=n, javascript=y) actually happens.
-        = yield form
+      /
+        // utils
+      script.
+        function throttle(callback) {
+          // cf. https://developer.mozilla.org/en-US/docs/Web/Events/resize#setTimeout
+          var skip;
+          return function(e) {
+            if (skip) return;
+            skip = setTimeout(function(){
+              skip = null;
+              callback(e);
+            }, 66);
+          };
+        }
+        function getBody(html) {
+          var body = null;
+          var re = /<\/{0,1}body[^>]*>/;
+          var splits = html.split(re, 2);
+          if (splits.length === 2) body = splits[1];
+          return body;
+        }
   section#petition-details
     #petition-details-text
       h2 {{.msg.Get "Details"}}
