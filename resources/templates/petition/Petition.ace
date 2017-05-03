@@ -64,27 +64,31 @@ body
       script.
         document.addEventListener('DOMContentLoaded', function(){
           var iframe = document.getElementById('petition-form-iframe');
-          var content = iframe.contentWindow;
-          if (!content) return;
-          function resize() {
+          iframe.addEventListener('load', function(){
+            var contentWindow = iframe.contentWindow;
+            resize(contentWindow);
+            contentWindow.addEventListener('resize', throttle(function(){
+              resize(contentWindow);
+            }));
+          });
+          function resize(contentWindow) {
             iframe.style.height = '';
-            iframe.style.height = content.document.body.clientHeight + 'px';
+            iframe.style.height = contentWindow.document.body.clientHeight + 'px';
           }
-          content.addEventListener('load', resize);
-          content.addEventListener('resize', throttle(resize));
         });
       /
         // utils
       script.
-        function throttle(callback) {
+        function throttle(callback, timeout) {
           // cf. https://developer.mozilla.org/en-US/docs/Web/Events/resize#setTimeout
+          timeout = timeout || 66; // 15 fps
           var skip;
           return function(e) {
             if (skip) return;
             skip = setTimeout(function(){
               skip = null;
               callback(e);
-            }, 66);
+            }, timeout);
           };
         }
         function getBody(html) {
