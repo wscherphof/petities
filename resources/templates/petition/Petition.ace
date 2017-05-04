@@ -3,14 +3,14 @@ body
   header
     a href="http://www.petities.nl"
       img src="/static/images/logo-petities-nl.png"
-  section#petition-intro
+  section#petition-intro.container
     #petition-intro-image
       img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png" width="100%"
     #petition-intro-text
       h1 {{.msg.Select .petition.Caption}}
       p#petition-intro-counter {{.petition.NumSignatures}} {{.msg.Get "signatures"}}
       p {{.msg.Select .petition.Intro}}
-  section#petition
+  section#petition.container
     #petition-text
       h2 {{.msg.Get "Petition"}}
       h3 {{.msg.Get "We"}}
@@ -95,7 +95,7 @@ body
             }, timeout);
           };
         }
-  section#petition-details
+  section#petition-details.container
     #petition-details-text
       h2 {{.msg.Get "Details"}}
       table
