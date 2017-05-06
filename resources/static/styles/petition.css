@@ -101,6 +101,16 @@ label[for] {
   overflow: hidden;
 }
 
+.viewport {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 75em;
+  flex-grow: 1;
+}
+
 section {
   margin-left: 1em;
   margin-right: 1em;
