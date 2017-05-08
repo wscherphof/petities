@@ -5,7 +5,8 @@ body {
 
 header {
   background-color: #bcf9c7;
-  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 footer {
@@ -41,13 +42,13 @@ h2 {
 }
 
 h3 {
-  margin-top:.5em;
-  margin-bottom:.3em;
+  margin-top: .5em;
+  margin-bottom: .3em;
 }
 
 th {
-  text-align:left;
-  vertical-align:top;
+  text-align: left;
+  vertical-align: top;
   font-weight: bold;
 }
 
@@ -58,7 +59,7 @@ td {
 ul {
   margin: 0;
   padding-left: 1em;
-  list-style-image:url(/static/images/blue-arrow-right.png);
+  list-style-image: url(/static/images/blue-arrow-right.png);
 }
 
 input[type=text],
@@ -120,40 +121,16 @@ input[type=checkbox] {
   overflow: hidden;
 }
 
-#petition-intro,
-#petition,
-#petition-details {
-  display: flex;
-  flex-wrap: wrap;
+#petition-intro {
+  margin-top: 1em;
 }
 
 #petition-intro-image,
-#petition-intro-text,
 #petition-text,
 #petition-form,
 #petition-details-text,
 #petition-details-history {
-  width: 15em;
-  flex-grow: 1;
-  margin-top: 1em;
-}
-
-#petition-details {
   margin-bottom: 1em;
-}
-
-#petition-intro-image {
-  flex-grow: .3;
-}
-
-#petition-intro-image,
-#petition-details-text {
-  margin-right: .5em;
-}
-
-#petition-intro-text,
-#petition-details-history {
-  margin-left: .5em;
 }
 
 #petition-intro-text {
@@ -161,21 +138,14 @@ input[type=checkbox] {
 }
 
 #petition-intro-counter {
-  font:600 20px/21px 'open_sansregular', arial, sans-serif;
+  font: 600 20px/21px 'open_sansregular', arial, sans-serif;
 }
 
 #petition-text,
 #petition-form,
 #petition-details-text,
 #petition-details-history {
-  padding:1em 2em 2em 2em;
   background-color: #f5f5f5;
-}
-
-#petition-form {
-  background-image:url(/static/images/signature-form-background.gif);
-  background-repeat:repeat-y;
-  padding-bottom: 1em;
 }
 
 #petition-form-iframe {
@@ -196,6 +166,78 @@ input[type=checkbox] {
  color: #1ba734;
 }
 
+#petition-intro-image img,
 #petition-details-history-graph {
   width:100%;
+}
+
+@media (max-width: 50em) {
+  #petition-intro,
+  #petition,
+  #petition-details {
+    display: block;
+  }
+}
+
+@media (min-width: 50em) {
+  #petition-intro,
+  #petition,
+  #petition-details {
+    display: flex;
+  }
+
+  #petition-intro-image,
+  #petition-intro-text,
+  #petition-text,
+  #petition-form,
+  #petition-details-text,
+  #petition-details-history {
+    width: 0;
+    flex-grow: 1;
+  }
+
+  #petition-intro-image {
+    flex-grow: .5;
+  }
+
+  #petition-intro-image,
+  #petition-details-text {
+    margin-right: .5em;
+  }
+
+  #petition-intro-text,
+  #petition-details-history {
+    margin-left: .5em;
+  }
+
+  #petition-form {
+    background-image: url(/static/images/signature-form-background.gif);
+    background-repeat: repeat-y;
+  }
+}
+
+@media (max-width: 30em) {
+  #petition-text,
+  #petition-form,
+  #petition-details-text,
+  #petition-details-history {
+    padding: 1em;
+  }
+
+  #petition-form {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 30em) {
+  #petition-text,
+  #petition-form,
+  #petition-details-text,
+  #petition-details-history {
+    padding: 1em 2em 2em 2em;
+  }
+
+  #petition-form {
+    padding-bottom: 1em;
+  }
 }

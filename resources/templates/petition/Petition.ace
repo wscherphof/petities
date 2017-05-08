@@ -8,7 +8,7 @@ body
     .viewport-content
       section#petition-intro
         #petition-intro-image
-          img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png" width="100%"
+          img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png"
         #petition-intro-text
           h1 {{.msg.Select .petition.Caption}}
           p#petition-intro-counter {{.petition.NumSignatures}} {{.msg.Get "signatures"}}
