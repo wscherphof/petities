@@ -73,7 +73,7 @@ func (s *Signature) Register() {
 var newSignatures = make(map[string]int, 100)
 
 func (s *Signature) Confirm(token string) (err error, conflict bool) {
-	if s.Token == "" {
+	if s.Confirmed {
 		return ErrAlreadyConfirmed, true
 	}
 	if s.Token != token {
