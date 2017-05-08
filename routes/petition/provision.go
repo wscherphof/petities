@@ -119,7 +119,7 @@ func Provision(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 								signature := model.InitSignature(groningen.ID, email)
 								signature.Name = fmt.Sprintf("I M Name %d", i+j)
 								signature.City = "Sun City"
-								signature.Acknowledged = true
+								signature.Confirmed = true
 								batch = append(batch, signature)
 							}
 							signature := model.InitSignature(groningen.ID, "")

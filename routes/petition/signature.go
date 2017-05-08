@@ -34,9 +34,9 @@ func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 			if err, conflict := signature.Create(signature); err != nil {
 				template.Error(w, r, err, conflict)
 			} else {
-				emailMessage := template.Email(r, "petition", "Acknowledge-email", "lang")
-				link := "https://" + r.Host + "/signature/ack"
-				link += "?ack=" + signature.AcknowledgeToken
+				emailMessage := template.Email(r, "petition", "Confirm-email", "lang")
+				link := "https://" + r.Host + "/signature/confirm"
+				link += "?confirm=" + signature.Token
 				link += "&petition=" + petition.ID
 				link += "&email=" + email
 				emailMessage.Set("link", link)
@@ -48,8 +48,8 @@ func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	}
 }
 
-func AcknowledgeForm(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	t := template.GET(w, r, "petition", "AcknowledgeForm")
+func ConfirmForm(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	t := template.GET(w, r, "petition", "ConfirmForm")
 	petition := model.InitPetition(r.FormValue("petition"))
 	if err, _ := petition.Read(petition); err != nil {
 		template.Error(w, r, err, false)
@@ -57,20 +57,20 @@ func AcknowledgeForm(w http.ResponseWriter, r *http.Request, ps httprouter.Param
 		t.Set("petition", petition.ID)
 		t.Set("caption", petition.Caption)
 		t.Set("email", r.FormValue("email"))
-		t.Set("ack", r.FormValue("ack"))
+		t.Set("confirm", r.FormValue("confirm"))
 		t.Run()
 	}
 }
 
-func Acknowledge(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	if t := template.PRG(w, r, "petition", "Acknowledge"); t == nil {
+func Confirm(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	if t := template.PRG(w, r, "petition", "Confirm"); t == nil {
 		return
 	} else {
-		petition, email, ack := r.FormValue("petition"), r.FormValue("email"), r.FormValue("ack")
+		petition, email, confirm := r.FormValue("petition"), r.FormValue("email"), r.FormValue("confirm")
 		signature := model.InitSignature(petition, email)
 		if err, empty := signature.Read(signature); err != nil {
 			template.Error(w, r, err, empty)
-		} else if err, conflict := signature.Acknowledge(ack); err != nil {
+		} else if err, conflict := signature.Confirm(confirm); err != nil {
 			template.Error(w, r, err, conflict)
 		} else {
 			t.Run()

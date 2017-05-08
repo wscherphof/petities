@@ -12,9 +12,9 @@ func init() {
 	router.POST("/signature", petition.Signature)
 	router.GET("/signature/post", petition.Signature)
 
-	router.GET("/signature/ack", petition.AcknowledgeForm)
-	router.PUT("/signature/ack", petition.Acknowledge)
-	router.GET("/signature/ack/put", petition.Acknowledge)
+	router.GET("/signature/confirm", petition.ConfirmForm)
+	router.PUT("/signature/confirm", petition.Confirm)
+	router.GET("/signature/confirm/put", petition.Confirm)
 
 	router.GET("/provision", template.Handle("petition", "ProvisionForm", ""))
 	router.POST("/provision", petition.Provision)

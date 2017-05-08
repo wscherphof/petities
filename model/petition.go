@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	ErrAlreadyAcknowledged = errors.New("ErrAlreadyAcknowledged")
+	ErrAlreadyConfirmed = errors.New("ErrAlreadyConfirmed")
 )
 
 type Petition struct {
@@ -45,12 +45,12 @@ func InitPetition(opt_id ...string) (petition *Petition) {
 
 type Signature struct {
 	*entity.Base
-	petition         string
-	Name             string
-	City             string
-	Visible          bool
-	AcknowledgeToken string `gorethink:",omitempty"`
-	Acknowledged     bool
+	petition  string
+	Name      string
+	City      string
+	Visible   bool
+	Token     string `gorethink:",omitempty"`
+	Confirmed bool
 }
 
 func InitSignature(petition, email string) *Signature {
@@ -59,27 +59,27 @@ func InitSignature(petition, email string) *Signature {
 			Table: petition + "_Signature",
 			ID:    email,
 		},
-		AcknowledgeToken: util.NewToken(),
-		petition:         petition,
+		Token:    util.NewToken(),
+		petition: petition,
 	}
 }
 
 func (s *Signature) Register() {
 	entity.Register(s).
 		Index("Created").
-		Index("Acknowledged")
+		Index("Confirmed")
 }
 
 var newSignatures = make(map[string]int, 100)
 
-func (s *Signature) Acknowledge(ack string) (err error, conflict bool) {
-	if s.AcknowledgeToken == "" {
-		return ErrAlreadyAcknowledged, true
+func (s *Signature) Confirm(token string) (err error, conflict bool) {
+	if s.Token == "" {
+		return ErrAlreadyConfirmed, true
 	}
-	if s.AcknowledgeToken != ack {
+	if s.Token != token {
 		return essix.ErrInvalidCredentials, true
 	}
-	s.AcknowledgeToken, s.Acknowledged = "", true
+	s.Token, s.Confirmed = "", true
 	if err = s.Update(s); err == nil {
 		newSignatures[s.petition]++
 	}
@@ -97,7 +97,7 @@ func (p *Petition) newSignatures(num int) (err error) {
 
 func (p *Petition) Synchronise() (err error) {
 	signature := InitSignature(p.ID, "")
-	index := signature.Index(signature, "Acknowledged")
+	index := signature.Index(signature, "Confirmed")
 	if err = index.Count(&(p.NumSignatures), true); err == nil {
 		err = p.Update(p)
 	}

@@ -69,15 +69,11 @@ func init() {
 		Set("nl", "Bevestig alstublieft").
 		Set("en", "Please confirm")
 
-	msg.Key("Ack").
-		Set("nl", "Mijn unieke bevestigingscode").
-		Set("en", "My unique confirmation token")
-
-	msg.Key("Acknowledge").
+	msg.Key("Confirm").
 		Set("nl", "Mijn ondertekening bevestigen").
 		Set("en", "Confirm my subscription")
 
-	msg.Key("ErrAlreadyAcknowledged").
+	msg.Key("ErrAlreadyConfirmed").
 		Set("nl", "Deze ondertekening was al bevestigd 👍").
 		Set("en", "This signature has been confirmed already 👍")
 
