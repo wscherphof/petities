@@ -1,19 +1,19 @@
 = include ../includes/top .
 body
   header.viewport
-    .content
+    .viewport-content
       a href="http://www.petities.nl"
         img src="/static/images/logo-petities-nl.png"
   main.viewport
-    .content
-      section#petition-intro.container
+    .viewport-content
+      section#petition-intro
         #petition-intro-image
           img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png" width="100%"
         #petition-intro-text
           h1 {{.msg.Select .petition.Caption}}
           p#petition-intro-counter {{.petition.NumSignatures}} {{.msg.Get "signatures"}}
           p {{.msg.Select .petition.Intro}}
-      section#petition.container
+      section#petition
         #petition-text
           h2 {{.msg.Get "Petition"}}
           h3 {{.msg.Get "We"}}
@@ -98,7 +98,7 @@ body
                 }, timeout);
               };
             }
-      section#petition-details.container
+      section#petition-details
         #petition-details-text
           h2 {{.msg.Get "Details"}}
           table
@@ -130,6 +130,6 @@ body
           h2 {{.msg.Get "History"}}
           img#petition-details-history-graph src="/static/images/{{.petition.ID}}/geschiedenis-chart.png"
   footer.viewport
-    .content
+    .viewport-content
   script.
     document.title = '{{.msg.Select .petition.Caption}}' + ' - ' + document.title;

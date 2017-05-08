@@ -10,12 +10,12 @@
     p
       label {{.msg.Get "City"}}
         input#city type="text" name="city" autocomplete="on" placeholder={{.msg.Get "City placeholder"}} required=
-    p
+    p.flex
       input#visible type="checkbox" name="visible"
-        label for="visible" {{.msg.Get "Visible"}}
-    p
+      label for="visible" {{.msg.Get "Visible"}}
+    p.flex
       input#understand type="checkbox" name="understand" required=
-        label for="understand" {{.msg.Get "Understand"}}
+      label for="understand" {{.msg.Get "Understand"}}
     p
       input type="submit" value={{.msg.Get "Submit signature"}}
     input type="hidden" name="petition" value={{.petitionID}}
