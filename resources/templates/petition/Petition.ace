@@ -68,7 +68,7 @@ body
           /
             // iframe supported: form fetched by iframe's request.
             //   w/o javascript: iframe's contents are made visible through
-            //     height=xxx, at the cost of the .sticky behaviour.
+            //     min-height=100%, at the cost of the .sticky behaviour.
             //   w/ javascript: on resize, iframe's height is reset to precisely fit
             //     its contents, effectuating the .sticky behaviour.
           script.
