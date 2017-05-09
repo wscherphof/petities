@@ -76,14 +76,15 @@ body
               var iframe = document.getElementById('petition-form-iframe');
               iframe.addEventListener('load', function(){
                 var contentWindow = iframe.contentWindow;
-                resize(contentWindow);
+                var html = contentWindow.document.getElementsByTagName("html")[0];
+                resize(html);
                 contentWindow.addEventListener('resize', throttle(function(){
-                  resize(contentWindow);
+                  resize(html);
                 }));
               });
-              function resize(contentWindow) {
+              function resize(html) {
                 iframe.style.minHeight = '1px';
-                iframe.style.height = contentWindow.document.body.clientHeight + 'px';
+                iframe.style.height = html.offsetHeight + 'px';
               }
             });
             function throttle(callback, timeout) {
