@@ -82,7 +82,7 @@ body
                 }));
               });
               function resize(contentWindow) {
-                iframe.style.height = '0px';
+                iframe.style.minHeight = '1px';
                 iframe.style.height = contentWindow.document.body.clientHeight + 'px';
               }
             });
