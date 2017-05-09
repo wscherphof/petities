@@ -146,7 +146,7 @@ input[type=checkbox] {
 
 #petition-form-iframe {
   width: 100%;
-  height: 100%;
+  height: 35em; /* Safari ignores 100% here :-( */
   border-width: 0;
 }
 
