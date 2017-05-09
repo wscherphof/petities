@@ -1,5 +1,5 @@
 = include ../includes/top .
 body
   .sticky
-    img.h2 src="/static/images/success.png"
+    img.center src="/static/images/success.png"
     = yield main

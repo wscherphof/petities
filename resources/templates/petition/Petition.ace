@@ -1,136 +1,135 @@
 = include ../includes/top .
 body
-  header.viewport
-    .viewport-content
+  header
+    .viewport
       a href="http://www.petities.nl"
         img src="/static/images/logo-petities-nl.png"
   main.viewport
-    .viewport-content
-      section#petition-intro
-        #petition-intro-image
-          img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png"
-        #petition-intro-text
-          h1 {{.msg.Select .petition.Caption}}
-          p#petition-intro-counter {{.petition.NumSignatures}} {{.msg.Get "signatures"}}
-          p {{.msg.Select .petition.Intro}}
-      section#petition
-        #petition-text
-          h2 {{.msg.Get "Petition"}}
-          h3 {{.msg.Get "We"}}
-          p {{.msg.Select .petition.We}}
-          h3 {{.msg.Get "observe"}}
-          ul
-            {{$msg := .msg}}
-            {{range $i, $v := .petition.Observations}}
-              li {{$msg.Select $v}}
-            {{end}}
-          h3 {{.msg.Get "and request"}}
-          ul
-            {{$msg := .msg}}
-            {{range $i, $v := .petition.Requests}}
-              li {{$msg.Select $v}}
-            {{end}}
-        #petition-form
-          iframe#petition-form-iframe.sticky src="/signature?petition={{.petition.ID}}" width="100%" height="300"
-            /
-              // iframe unsupported: form rendered inline directly.
-              //   w/o javascript: submit refreshes page.
-              //   w/ javascript: submit by ajax, replacing form fragment with
-              //     server response.
-            = yield form
-            script.
-              document.addEventListener('DOMContentLoaded', function(){
-                if (!XMLHttpRequest || !FormData) return;
-                var form = document.getElementById('signature-form');
-                var request = new XMLHttpRequest();
-                form.addEventListener('submit', function(e) {
-                  e.preventDefault();
-                  request.open(form.method, form.action);
-                  request.send(new FormData(form));
-                });
-                request.onreadystatechange = function() {
-                  if (request.readyState !== XMLHttpRequest.DONE) return;
-                  var body = getBody(request.responseText);
-                  if (!body) {
-                    alert('Cannot process server response:\n' + request.responseText);
-                  } else {
-                    form.outerHTML = body;
-                  }
-                };
-              });
-              function getBody(html) {
-                var body = null;
-                var re = /<\/{0,1}body[^>]*>/;
-                var splits = html.split(re, 2);
-                if (splits.length === 2) body = splits[1];
-                return body;
-              }
+    section#petition-intro
+      #petition-intro-image
+        img src="/static/images/{{.petition.ID}}/afbeelding-petitie.png"
+      #petition-intro-text
+        h1 {{.msg.Select .petition.Caption}}
+        p#petition-intro-counter {{.petition.NumSignatures}} {{.msg.Get "signatures"}}
+        p {{.msg.Select .petition.Intro}}
+    section#petition
+      #petition-text
+        h2 {{.msg.Get "Petition"}}
+        h3 {{.msg.Get "We"}}
+        p {{.msg.Select .petition.We}}
+        h3 {{.msg.Get "observe"}}
+        ul
+          {{$msg := .msg}}
+          {{range $i, $v := .petition.Observations}}
+            li {{$msg.Select $v}}
+          {{end}}
+        h3 {{.msg.Get "and request"}}
+        ul
+          {{$msg := .msg}}
+          {{range $i, $v := .petition.Requests}}
+            li {{$msg.Select $v}}
+          {{end}}
+      #petition-form
+        iframe#petition-form-iframe.sticky src="/signature?petition={{.petition.ID}}" width="100%" height="300"
           /
-            // iframe supported: form fetched by iframe's request.
-            //   w/o javascript: iframe's contents are made visible through
-            //     min-height=100%, at the cost of the .sticky behaviour.
-            //   w/ javascript: on resize, iframe's height is reset to precisely fit
-            //     its contents, effectuating the .sticky behaviour.
+            // iframe unsupported: form rendered inline directly.
+            //   w/o javascript: submit refreshes page.
+            //   w/ javascript: submit by ajax, replacing form fragment with
+            //     server response.
+          = yield form
           script.
             document.addEventListener('DOMContentLoaded', function(){
-              var iframe = document.getElementById('petition-form-iframe');
-              iframe.addEventListener('load', function(){
-                var contentWindow = iframe.contentWindow;
-                var html = contentWindow.document.getElementsByTagName("html")[0];
-                resize(html);
-                contentWindow.addEventListener('resize', throttle(function(){
-                  resize(html);
-                }));
+              if (!XMLHttpRequest || !FormData) return;
+              var form = document.getElementById('signature-form');
+              var request = new XMLHttpRequest();
+              form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                request.open(form.method, form.action);
+                request.send(new FormData(form));
               });
-              function resize(html) {
-                iframe.style.minHeight = '1px';
-                iframe.style.height = html.offsetHeight + 'px';
-              }
-            });
-            function throttle(callback, timeout) {
-              // cf. https://developer.mozilla.org/en-US/docs/Web/Events/resize#setTimeout
-              timeout = timeout || 66; // 15 fps
-              var skip;
-              return function(e) {
-                if (skip) return;
-                skip = setTimeout(function(){
-                  skip = null;
-                  callback(e);
-                }, timeout);
+              request.onreadystatechange = function() {
+                if (request.readyState !== XMLHttpRequest.DONE) return;
+                var body = getBody(request.responseText);
+                if (!body) {
+                  alert('Cannot process server response:\n' + request.responseText);
+                } else {
+                  form.outerHTML = body;
+                }
               };
+            });
+            function getBody(html) {
+              var body = null;
+              var re = /<\/{0,1}body[^>]*>/;
+              var splits = html.split(re, 2);
+              if (splits.length === 2) body = splits[1];
+              return body;
             }
-      section#petition-details
-        #petition-details-text
-          h2 {{.msg.Get "Details"}}
-          table
-            tr
-              th {{.msg.Get "Addressed to"}}:
-              td {{.msg.Select .petition.Address}}
-            tr
-              th {{.msg.Get "Petition desk"}}:
-              td {{.msg.Select .petition.Desk}}
-            tr
-              th {{.msg.Get "Closing date"}}:
-              td {{.petition.Closed.Format (.msg.Get "Date format")}}
-            tr
-              th {{.msg.Get "Answer expected"}}:
-              td {{.petition.Answered.Format (.msg.Get "Date format")}}
-            tr
-              th {{.msg.Get "Status"}}:
-              td {{.msg.Get .petition.Status}}
-            tr
-              th {{.msg.Get "Websites"}}:
-              td
-                ul
-                  {{$msg := .msg}}
-                  {{range $i, $v := .petition.Websites}}
-                    li
-                      a href={{$v.URL}} {{$msg.Select $v.Caption}}
-                  {{end}}
-        #petition-details-history
-          h2 {{.msg.Get "History"}}
-          img#petition-details-history-graph src="/static/images/{{.petition.ID}}/geschiedenis-chart.png"
-  footer.viewport
-    .viewport-content
+        /
+          // iframe supported: form fetched by iframe's request.
+          //   w/o javascript: iframe's contents are made visible through
+          //     min-height=100%, at the cost of the .sticky behaviour.
+          //   w/ javascript: on resize, iframe's height is reset to precisely fit
+          //     its contents, effectuating the .sticky behaviour.
+        script.
+          document.addEventListener('DOMContentLoaded', function(){
+            var iframe = document.getElementById('petition-form-iframe');
+            iframe.addEventListener('load', function(){
+              var contentWindow = iframe.contentWindow;
+              var html = contentWindow.document.getElementsByTagName("html")[0];
+              resize(html);
+              contentWindow.addEventListener('resize', throttle(function(){
+                resize(html);
+              }));
+            });
+            function resize(html) {
+              iframe.style.minHeight = '1px';
+              iframe.style.height = html.offsetHeight + 'px';
+            }
+          });
+          function throttle(callback, timeout) {
+            // cf. https://developer.mozilla.org/en-US/docs/Web/Events/resize#setTimeout
+            timeout = timeout || 66; // 15 fps
+            var skip;
+            return function(e) {
+              if (skip) return;
+              skip = setTimeout(function(){
+                skip = null;
+                callback(e);
+              }, timeout);
+            };
+          }
+    section#petition-details
+      #petition-details-text
+        h2 {{.msg.Get "Details"}}
+        table
+          tr
+            th {{.msg.Get "Addressed to"}}:
+            td {{.msg.Select .petition.Address}}
+          tr
+            th {{.msg.Get "Petition desk"}}:
+            td {{.msg.Select .petition.Desk}}
+          tr
+            th {{.msg.Get "Closing date"}}:
+            td {{.petition.Closed.Format (.msg.Get "Date format")}}
+          tr
+            th {{.msg.Get "Answer expected"}}:
+            td {{.petition.Answered.Format (.msg.Get "Date format")}}
+          tr
+            th {{.msg.Get "Status"}}:
+            td {{.msg.Get .petition.Status}}
+          tr
+            th {{.msg.Get "Websites"}}:
+            td
+              ul
+                {{$msg := .msg}}
+                {{range $i, $v := .petition.Websites}}
+                  li
+                    a href={{$v.URL}} {{$msg.Select $v.Caption}}
+                {{end}}
+      #petition-details-history
+        h2 {{.msg.Get "History"}}
+        img#petition-details-history-graph src="/static/images/{{.petition.ID}}/geschiedenis-chart.png"
+  footer
+    .viewport
   script.
     document.title = '{{.msg.Select .petition.Caption}}' + ' - ' + document.title;
