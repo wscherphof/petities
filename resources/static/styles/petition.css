@@ -21,7 +21,7 @@ footer {
 }
 
 .viewport-content {
-  max-width: 75em;
+  max-width: 70em;
   flex-grow: 1;
   margin-left: 1em;
   margin-right: 1em;
@@ -121,10 +121,6 @@ input[type=checkbox] {
   overflow: hidden;
 }
 
-#petition-intro {
-  margin-top: 1em;
-}
-
 #petition-intro-image,
 #petition-text,
 #petition-form,
@@ -168,7 +164,11 @@ input[type=checkbox] {
 
 #petition-intro-image img,
 #petition-details-history-graph {
-  width:100%;
+  width: 100%;
+}
+
+#petition-intro-image {
+  max-width: 30em;
 }
 
 @media (max-width: 50em) {
@@ -176,6 +176,10 @@ input[type=checkbox] {
   #petition,
   #petition-details {
     display: block;
+  }
+
+  #petition-intro {
+    margin-top: 1em;
   }
 }
 
@@ -200,12 +204,18 @@ input[type=checkbox] {
     flex-grow: .5;
   }
 
-  #petition-intro-image,
+  #petition-intro {
+    margin-top: 3em;
+  }
+
+  #petition-intro-image {
+    margin-right: 1.5em;
+  }
+
   #petition-details-text {
     margin-right: .5em;
   }
 
-  #petition-intro-text,
   #petition-details-history {
     margin-left: .5em;
   }
