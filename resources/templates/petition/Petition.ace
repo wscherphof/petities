@@ -31,7 +31,7 @@ body
               li {{$msg.Select $v}}
             {{end}}
         #petition-form
-          iframe#petition-form-iframe.sticky src="/signature?petition={{.petition.ID}}"
+          iframe#petition-form-iframe.sticky src="/signature?petition={{.petition.ID}}" width="100%" height="300"
             /
               // iframe unsupported: form rendered inline directly.
               //   w/o javascript: submit refreshes page.
