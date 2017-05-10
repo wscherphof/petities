@@ -2,10 +2,13 @@ package petition
 
 import (
 	"github.com/julienschmidt/httprouter"
+	"github.com/wscherphof/env"
 	"github.com/wscherphof/essix/template"
 	"github.com/wscherphof/petities/model"
 	"net/http"
 )
+
+var test = (env.Get("GO_ENV", "") == "test")
 
 func SignatureForm(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	t := template.GET(w, r, "petition", "SignatureForm", "SignatureForm-form")
@@ -42,7 +45,12 @@ func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 				emailMessage.Set("link", link)
 				emailMessage.Run(email, "Please acknowledge")
 				t.Set("email", email)
-				t.Set("confirm", signature.Token) // for load testing purposes, this REALLY should only be in the email
+				if test {
+					// for load testing purposes, this REALLY should only be in the email
+					t.Set("confirm", signature.Token)
+				} else {
+					t.Set("confirm", "")
+				}
 				t.Run()
 			}
 		}
