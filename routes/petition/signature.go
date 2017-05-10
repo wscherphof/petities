@@ -42,6 +42,7 @@ func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 				emailMessage.Set("link", link)
 				emailMessage.Run(email, "Please acknowledge")
 				t.Set("email", email)
+				t.Set("confirm", signature.Token) // for load testing purposes, this REALLY should only be in the email
 				t.Run()
 			}
 		}

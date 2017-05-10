@@ -1,4 +1,4 @@
-= content main
+= content lang
   p.
     Thank you. It is now important to confirm your signature.
     On address {{.email}} you will receive an e-mail from real.essix@gmail.com with

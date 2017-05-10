@@ -1,5 +1,8 @@
 = include ../includes/top .
 body
+  / for load testing purposes, this REALLY should only be in the email
+  form
+    input#confirm type="hidden" name="confirm" value={{.confirm}}
   .sticky
     img.center src="/static/images/success.png"
-    = yield main
+    = yield lang

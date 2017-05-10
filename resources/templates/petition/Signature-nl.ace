@@ -1,4 +1,4 @@
-= content main
+= content lang
   p.
     Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen.
     Op e-mailadres {{.email}} ontvangt u een e-mail van real.essix@gmail.com met
