@@ -169,10 +169,6 @@ input[type=checkbox] {
   width: 100%;
 }
 
-#petition-intro-image {
-  max-width: 30em;
-}
-
 @media (max-width: 50em) {
   #petition-intro,
   #petition,
@@ -182,6 +178,10 @@ input[type=checkbox] {
 
   #petition-intro {
     margin-top: 1em;
+  }
+
+  #petition-intro-image {
+    max-width: 15em;
   }
 }
 
