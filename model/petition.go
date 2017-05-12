@@ -45,7 +45,7 @@ func InitPetition(opt_id ...string) (petition *Petition) {
 
 type Signature struct {
 	*entity.Base
-	petition  string
+	Petition  string
 	Name      string
 	City      string
 	Visible   bool
@@ -60,7 +60,7 @@ func InitSignature(petition, email string) *Signature {
 			ID:    email,
 		},
 		Token:    util.NewToken(),
-		petition: petition,
+		Petition: petition,
 	}
 }
 
@@ -81,16 +81,7 @@ func (s *Signature) Confirm(token string) (err error, conflict bool) {
 	}
 	s.Token, s.Confirmed = "", true
 	if err = s.Update(s); err == nil {
-		newSignatures[s.petition]++
-	}
-	return
-}
-
-func (p *Petition) newSignatures(num int) (err error) {
-	var spare int
-	spare, p.NumSignatures, newSignatures[p.ID] = newSignatures[p.ID], num, 0
-	if err = p.Update(p); err != nil {
-		newSignatures[p.ID] += spare
+		newSignatures[s.Petition]++
 	}
 	return
 }
@@ -117,9 +108,16 @@ func init() {
 				}
 				petition := InitPetition(k)
 				if err, _ := petition.Read(petition); err != nil {
-					log.Println("ERROR:", err)
-				} else if err := petition.newSignatures(petition.NumSignatures + newSignatures[k]); err != nil {
-					log.Println("ERROR:", err)
+					log.Printf("ERROR: newSignatures %v", err)
+				} else {
+					num := newSignatures[k]
+					petition.NumSignatures += num
+					if err := petition.Update(petition); err == nil {
+						newSignatures[k] -= num
+					} else {
+						petition.NumSignatures -= num
+						log.Printf("ERROR: newSignatures %v", err)
+					}
 				}
 			}
 		}
