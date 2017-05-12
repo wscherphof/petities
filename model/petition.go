@@ -45,7 +45,6 @@ func InitPetition(opt_id ...string) (petition *Petition) {
 
 type Signature struct {
 	*entity.Base
-	Petition  string
 	Name      string
 	City      string
 	Visible   bool
@@ -56,11 +55,10 @@ type Signature struct {
 func InitSignature(petition, email string) *Signature {
 	return &Signature{
 		Base: &entity.Base{
-			Table: petition + "_Signature",
+			Table: petition,
 			ID:    email,
 		},
-		Token:    util.NewToken(),
-		Petition: petition,
+		Token: util.NewToken(),
 	}
 }
 
@@ -81,7 +79,7 @@ func (s *Signature) Confirm(token string) (err error, conflict bool) {
 	}
 	s.Token, s.Confirmed = "", true
 	if err = s.Update(s); err == nil {
-		newSignatures[s.Petition]++
+		newSignatures[s.Table]++
 	}
 	return
 }
