@@ -3,6 +3,7 @@ body
   / for load testing purposes, this REALLY should only be in the email
   form
     input#confirm type="hidden" name="confirm" value={{.confirm}}
+    input#confirm type="hidden" name="email" value={{.email}}
   .sticky
     img.center src="/static/images/success.png"
     = yield lang

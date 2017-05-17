@@ -48,8 +48,10 @@ func Signature(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 				if test {
 					// for load testing purposes, this REALLY should only be in the email
 					t.Set("confirm", signature.Token)
+					t.Set("email", signature.ID)
 				} else {
 					t.Set("confirm", "")
+					t.Set("email", "")
 				}
 				t.Run()
 			}
