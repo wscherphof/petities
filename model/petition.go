@@ -48,7 +48,7 @@ type Signature struct {
 	Name      string
 	City      string
 	Visible   bool
-	Token     string `gorethink:",omitempty"`
+	Token     string
 	Confirmed bool
 }
 
