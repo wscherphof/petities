@@ -6,23 +6,12 @@
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments"/>
-      </elementProp>
-      <stringProp name="TestPlan.user_define_classpath"></stringProp>
-    </TestPlan>
-    <hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="HOSTNAME" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="host" elementType="Argument">
             <stringProp name="Argument.name">host</stringProp>
-            <stringProp name="Argument.value">192.168.99.100</stringProp>
+            <stringProp name="Argument.value">${__env(NODE_0)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-        </collectionProp>
-      </Arguments>
-      <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments">
           <elementProp name="petition" elementType="Argument">
             <stringProp name="Argument.name">petition</stringProp>
             <stringProp name="Argument.value">groningen</stringProp>
@@ -39,8 +28,10 @@
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
-      </Arguments>
-      <hashTree/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
       <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments"/>
@@ -1728,17 +1719,23 @@
           <boolProp name="include_checkbox_state">false</boolProp>
           <boolProp name="exclude_checkbox_state">false</boolProp>
           <collectionProp name="metricConnections">
-            <collectionProp name="-599522364">
-              <stringProp name="1074141986">192.168.99.100</stringProp>
+            <collectionProp name="-438814750">
+              <stringProp name="1919730745">${__env(NODE_0)}</stringProp>
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="66952">CPU</stringProp>
               <stringProp name="0"></stringProp>
             </collectionProp>
-            <collectionProp name="-598390306">
-              <stringProp name="1074141987">192.168.99.101</stringProp>
-              <stringProp name="1600768">4444</stringProp>
-              <stringProp name="66952">CPU</stringProp>
-              <stringProp name="0"></stringProp>
+            <collectionProp name="-2067866611">
+              <stringProp name="1919731706">${__env(NODE_1)}</stringProp>
+              <stringProp reference="../../collectionProp/stringProp[2]"/>
+              <stringProp reference="../../collectionProp/stringProp[3]"/>
+              <stringProp reference="../../collectionProp/stringProp[4]"/>
+            </collectionProp>
+            <collectionProp name="-119526993">
+              <stringProp name="1919732667">${__env(NODE_2)}</stringProp>
+              <stringProp reference="../../collectionProp/stringProp[2]"/>
+              <stringProp reference="../../collectionProp/stringProp[3]"/>
+              <stringProp reference="../../collectionProp/stringProp[4]"/>
             </collectionProp>
           </collectionProp>
         </kg.apc.jmeter.perfmon.PerfMonCollector>
@@ -1786,14 +1783,20 @@
           <boolProp name="include_checkbox_state">false</boolProp>
           <boolProp name="exclude_checkbox_state">false</boolProp>
           <collectionProp name="metricConnections">
-            <collectionProp name="1394730611">
-              <stringProp name="1074141986">192.168.99.100</stringProp>
+            <collectionProp name="1555438225">
+              <stringProp name="1919730745">${__env(NODE_0)}</stringProp>
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="-1993889503">Memory</stringProp>
               <stringProp name="0"></stringProp>
             </collectionProp>
-            <collectionProp name="1395862669">
-              <stringProp name="1074141987">192.168.99.101</stringProp>
+            <collectionProp name="-73613636">
+              <stringProp name="1919731706">${__env(NODE_1)}</stringProp>
+              <stringProp name="1600768">4444</stringProp>
+              <stringProp name="-1993889503">Memory</stringProp>
+              <stringProp name="0"></stringProp>
+            </collectionProp>
+            <collectionProp name="1773399580">
+              <stringProp name="1919732667">${__env(NODE_2)}</stringProp>
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="-1993889503">Memory</stringProp>
               <stringProp name="0"></stringProp>
@@ -1844,14 +1847,20 @@
           <boolProp name="include_checkbox_state">false</boolProp>
           <boolProp name="exclude_checkbox_state">false</boolProp>
           <collectionProp name="metricConnections">
-            <collectionProp name="-1011227434">
-              <stringProp name="1074141986">192.168.99.100</stringProp>
+            <collectionProp name="-850519820">
+              <stringProp name="1919730745">${__env(NODE_0)}</stringProp>
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="2112896831">Disks I/O</stringProp>
               <stringProp name="0"></stringProp>
             </collectionProp>
-            <collectionProp name="-1010095376">
-              <stringProp name="1074141987">192.168.99.101</stringProp>
+            <collectionProp name="1815395615">
+              <stringProp name="1919731706">${__env(NODE_1)}</stringProp>
+              <stringProp name="1600768">4444</stringProp>
+              <stringProp name="2112896831">Disks I/O</stringProp>
+              <stringProp name="0"></stringProp>
+            </collectionProp>
+            <collectionProp name="-632558465">
+              <stringProp name="1919732667">${__env(NODE_2)}</stringProp>
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="2112896831">Disks I/O</stringProp>
               <stringProp name="0"></stringProp>
@@ -1902,14 +1911,20 @@
           <boolProp name="include_checkbox_state">false</boolProp>
           <boolProp name="exclude_checkbox_state">false</boolProp>
           <collectionProp name="metricConnections">
-            <collectionProp name="1507070627">
-              <stringProp name="1074141986">192.168.99.100</stringProp>
+            <collectionProp name="1667778241">
+              <stringProp name="1919730745">${__env(NODE_0)}</stringProp>
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="-274342153">Network I/O</stringProp>
               <stringProp name="0"></stringProp>
             </collectionProp>
-            <collectionProp name="1508202685">
-              <stringProp name="1074141987">192.168.99.101</stringProp>
+            <collectionProp name="38726380">
+              <stringProp name="1919731706">${__env(NODE_1)}</stringProp>
+              <stringProp name="1600768">4444</stringProp>
+              <stringProp name="-274342153">Network I/O</stringProp>
+              <stringProp name="0"></stringProp>
+            </collectionProp>
+            <collectionProp name="1885739596">
+              <stringProp name="1919732667">${__env(NODE_2)}</stringProp>
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="-274342153">Network I/O</stringProp>
               <stringProp name="0"></stringProp>
