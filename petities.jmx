@@ -350,7 +350,7 @@
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="false">
+        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -386,7 +386,7 @@
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -422,7 +422,7 @@
           <stringProp name="filename">/Users/wsf/go/src/github.com/wscherphof/petities/jmeter-test/2017-06-06/14.52.04/results.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ThreadsStateOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Active Threads Over Time" enabled="false">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ThreadsStateOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Active Threads Over Time" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -466,7 +466,7 @@
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesDistributionGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Distribution" enabled="false">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesDistributionGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Distribution" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -510,7 +510,7 @@
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Over Time" enabled="false">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Over Time" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -554,7 +554,7 @@
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesPercentilesGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Percentiles" enabled="false">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesPercentilesGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Percentiles" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -598,7 +598,7 @@
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TimesVsThreadsGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times vs Threads" enabled="false">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TimesVsThreadsGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times vs Threads" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -642,7 +642,7 @@
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ThroughputVsThreadsGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transaction Throughput vs Threads" enabled="false">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ThroughputVsThreadsGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transaction Throughput vs Threads" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -686,7 +686,7 @@
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="false">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -791,6 +791,42 @@
               <stringProp name="66952">CPU</stringProp>
               <stringProp name="0"></stringProp>
             </collectionProp>
+            <collectionProp name="474936602">
+              <stringProp reference="../../collectionProp/stringProp"/>
+              <stringProp reference="../../collectionProp/stringProp[2]"/>
+              <stringProp reference="../../collectionProp/stringProp[3]"/>
+              <stringProp name="1499872395">name=rethinkdb</stringProp>
+            </collectionProp>
+            <collectionProp name="-2133720531">
+              <stringProp reference="../../collectionProp[2]/stringProp"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[3]"/>
+              <stringProp name="1499872395">name=rethinkdb</stringProp>
+            </collectionProp>
+            <collectionProp name="270165449">
+              <stringProp reference="../../collectionProp[3]/stringProp"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[3]"/>
+              <stringProp name="1499872395">name=rethinkdb</stringProp>
+            </collectionProp>
+            <collectionProp name="1363772471">
+              <stringProp reference="../../collectionProp/stringProp"/>
+              <stringProp reference="../../collectionProp/stringProp[2]"/>
+              <stringProp reference="../../collectionProp/stringProp[3]"/>
+              <stringProp name="-1634876129">name=petities</stringProp>
+            </collectionProp>
+            <collectionProp name="-1244884662">
+              <stringProp reference="../../collectionProp[2]/stringProp"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[3]"/>
+              <stringProp name="-1634876129">name=petities</stringProp>
+            </collectionProp>
+            <collectionProp name="1159001318">
+              <stringProp reference="../../collectionProp[3]/stringProp"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[3]"/>
+              <stringProp name="-1634876129">name=petities</stringProp>
+            </collectionProp>
           </collectionProp>
         </kg.apc.jmeter.perfmon.PerfMonCollector>
         <hashTree/>
@@ -854,6 +890,24 @@
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="66952">CPU</stringProp>
               <stringProp name="0"></stringProp>
+            </collectionProp>
+            <collectionProp name="1581436760">
+              <stringProp reference="../../collectionProp/stringProp"/>
+              <stringProp reference="../../collectionProp/stringProp[2]"/>
+              <stringProp reference="../../collectionProp/stringProp[3]"/>
+              <stringProp name="1202169908">name=java</stringProp>
+            </collectionProp>
+            <collectionProp name="-47615101">
+              <stringProp reference="../../collectionProp[2]/stringProp"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[3]"/>
+              <stringProp name="1202169908">name=java</stringProp>
+            </collectionProp>
+            <collectionProp name="1130710670">
+              <stringProp reference="../../collectionProp[3]/stringProp"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[3]"/>
+              <stringProp name="1202169908">name=java</stringProp>
             </collectionProp>
           </collectionProp>
         </kg.apc.jmeter.perfmon.PerfMonCollector>
@@ -919,6 +973,42 @@
               <stringProp name="-1993889503">Memory</stringProp>
               <stringProp name="0"></stringProp>
             </collectionProp>
+            <collectionProp name="-1825777719">
+              <stringProp reference="../../collectionProp/stringProp"/>
+              <stringProp reference="../../collectionProp/stringProp[2]"/>
+              <stringProp reference="../../collectionProp/stringProp[3]"/>
+              <stringProp name="1499872395">name=rethinkdb</stringProp>
+            </collectionProp>
+            <collectionProp name="-139467556">
+              <stringProp reference="../../collectionProp[2]/stringProp"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[3]"/>
+              <stringProp name="1499872395">name=rethinkdb</stringProp>
+            </collectionProp>
+            <collectionProp name="-2030548872">
+              <stringProp reference="../../collectionProp[3]/stringProp"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[3]"/>
+              <stringProp name="1499872395">name=rethinkdb</stringProp>
+            </collectionProp>
+            <collectionProp name="-936941850">
+              <stringProp reference="../../collectionProp/stringProp"/>
+              <stringProp reference="../../collectionProp/stringProp[2]"/>
+              <stringProp reference="../../collectionProp/stringProp[3]"/>
+              <stringProp name="-1634876129">name=petities</stringProp>
+            </collectionProp>
+            <collectionProp name="749368313">
+              <stringProp reference="../../collectionProp[2]/stringProp"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[3]"/>
+              <stringProp name="-1634876129">name=petities</stringProp>
+            </collectionProp>
+            <collectionProp name="-1141713003">
+              <stringProp reference="../../collectionProp[3]/stringProp"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[3]"/>
+              <stringProp name="-1634876129">name=petities</stringProp>
+            </collectionProp>
           </collectionProp>
         </kg.apc.jmeter.perfmon.PerfMonCollector>
         <hashTree/>
@@ -982,6 +1072,24 @@
               <stringProp name="1600768">4444</stringProp>
               <stringProp name="-1993889503">Memory</stringProp>
               <stringProp name="0"></stringProp>
+            </collectionProp>
+            <collectionProp name="-719277561">
+              <stringProp reference="../../collectionProp/stringProp"/>
+              <stringProp reference="../../collectionProp/stringProp[2]"/>
+              <stringProp reference="../../collectionProp/stringProp[3]"/>
+              <stringProp name="1202169908">name=java</stringProp>
+            </collectionProp>
+            <collectionProp name="1946637874">
+              <stringProp reference="../../collectionProp[2]/stringProp"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[2]/stringProp[3]"/>
+              <stringProp name="1202169908">name=java</stringProp>
+            </collectionProp>
+            <collectionProp name="-1170003651">
+              <stringProp reference="../../collectionProp[3]/stringProp"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[2]"/>
+              <stringProp reference="../../collectionProp[3]/stringProp[3]"/>
+              <stringProp name="1202169908">name=java</stringProp>
             </collectionProp>
           </collectionProp>
         </kg.apc.jmeter.perfmon.PerfMonCollector>
