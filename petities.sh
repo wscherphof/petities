@@ -10,7 +10,6 @@ up)
 	export DIGITALOCEAN_SIZE=2gb
 	{	# petities
 		essix nodes -d digitalocean -F -m 1 -w 2 create petities
-		essix jmeter perfmon start petities &
 		essix r -n 2 create petities
 		essix \
 			-e DOMAIN=petities.wscherphof.nl \
@@ -18,11 +17,12 @@ up)
 			-e DB_SHARDS=1 -e DB_REPLICAS=3 \
 			-e RATELIMIT=0 -e GO_ENV=test \
 			run wscherphof 0.1 petities
+		essix jmeter perfmon start petities
 	} &
 	{	# slave
 		essix nodes -d digitalocean -F -m 1 -w 2 create slave
-		essix jmeter perfmon start slave &
 		essix jmeter server start slave
+		essix jmeter perfmon start slave
 	} &
 	{	# master
 		essix nodes -d digitalocean -F -m 1 create master
