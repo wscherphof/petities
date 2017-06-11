@@ -26,6 +26,8 @@ up)
 	} &
 	{	# master
 		essix nodes -d digitalocean -F -m 1 create master
+		essix jmeter server start master
+		essix jmeter server stop master
 	} &
 	wait
 	echo -n "* end: " && date +"%H:%M"
