@@ -20,7 +20,7 @@ up)
 		essix jmeter perfmon start petities
 	} &
 	{	# slave
-		essix nodes -d digitalocean -F -m 1 -w 2 create slave
+		essix nodes -d digitalocean -F -m 1 -w 5 create slave
 		essix jmeter server start slave
 		essix jmeter perfmon start slave
 	} &
